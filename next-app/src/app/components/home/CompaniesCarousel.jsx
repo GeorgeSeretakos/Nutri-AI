@@ -25,6 +25,7 @@ const logos = [
   "/images/companies/up-hellas.jpg",
   "/images/companies/veluda.jpg",
   "/images/companies/wellbeing.png",
+  "/images/companies/lambda.jpg"
 ];
 
 export default function CompaniesCarousel() {
