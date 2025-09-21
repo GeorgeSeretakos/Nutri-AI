@@ -4,7 +4,7 @@ export default function HeaderTabs({ activeTab, setActiveTab }) {
   const tabs = [
     { id: "diet", label: "Δίαιτες" },
     { id: "measurement", label: "Μετρήσεις" },
-    { id: "photo", label: "Φωτογραφίες" },
+    { id: "photo", label: "Λοιπά Αρχεία" },
   ];
 
   return (

@@ -24,7 +24,7 @@ export default function UploadModal({
   const options = [
     { value: "DIET", label: "Δίαιτα" },
     { value: "MEASUREMENT", label: "Μέτρηση" },
-    { value: "PHOTO", label: "Φωτογραφία" },
+    { value: "PHOTO", label: "Λοιπά Αρχεία" },
   ];
 
   const handleFileClick = () => fileInputRef.current.click();

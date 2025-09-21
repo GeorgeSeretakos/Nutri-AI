@@ -20,7 +20,7 @@ export async function POST(req) {
 
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
-      console.warn("login.not_found", { email: maskEmail(email), ip, ua });
+      console.warn("login.not_found", { email, ip, ua });
       return new Response(JSON.stringify({ status: "not_found" }), { status: 200 });
     }
 
