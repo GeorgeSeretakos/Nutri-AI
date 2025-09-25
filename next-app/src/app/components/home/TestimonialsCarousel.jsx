@@ -14,9 +14,7 @@ export default function TestimonialsCarousel() {
       <div className="z-10 w-full">
         {/* Section Title */}
         <div className="max-w-6xl mx-auto">
-          <h2 className="title-black text-left">
-            Τι λένε για εμάς
-          </h2>
+          <h2 className="title-black text-left">Τι λένε για εμάς</h2>
           <p className="text-gray-600 mt-2 max-w-xl text-left">
             Μερικά λόγια από ανθρώπους που μας εμπιστεύτηκαν και είδαν τη ζωή τους να αλλάζει.
           </p>
@@ -39,9 +37,10 @@ export default function TestimonialsCarousel() {
           >
             {testimonials.map((r, idx) => (
               <SwiperSlide key={idx} className="flex">
-                <div className="bg-white shadow rounded-xl p-4 md:p-5 text-left flex flex-col justify-between flex-1">
-                  {/* Header */}
-                  <div className="flex items-center gap-2">
+                {/* Card with constant height */}
+                <div className="bg-white shadow rounded-xl p-4 md:p-5 text-left flex flex-col flex-1 h-64 md:h-72">
+                  {/* Header (fixed) */}
+                  <div className="flex items-center gap-2 shrink-0">
                     {r.avatar ? (
                       <img
                         src={r.avatar}
@@ -60,21 +59,19 @@ export default function TestimonialsCarousel() {
                       <span className="text-xs text-gray-500">{r.years}</span>
                     </div>
                     <div className="ml-auto">
-                      <img
-                        src="/icons/google.png"
-                        alt="Google"
-                        className="w-5 h-5"
-                      />
+                      <img src="/icons/google.png" alt="Google" className="w-5 h-5" />
                     </div>
                   </div>
 
                   {/* Stars */}
-                  <div className="text-yellow-400 mt-2 text-sm md:text-base">
-                    {"★".repeat(r.stars)}
+                  <div className="text-yellow-400 text-sm md:text-base leading-none mt-2 shrink-0">
+                    {"★".repeat(r.stars || 5)}
                   </div>
 
                   {/* Review */}
-                  <p className="mt-2 text-gray-700 text-sm">{r.text}</p>
+                  <div className="mt-2 text-gray-700 text-sm leading-relaxed flex-1 overflow-y-auto pr-1 review-scroll">
+                    {r.text}
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
@@ -99,6 +96,16 @@ export default function TestimonialsCarousel() {
           .swiper-pagination-bullet-active {
             background: white !important;
             opacity: 1;
+          }
+          .review-scroll::-webkit-scrollbar {
+            width: 6px;
+          }
+          .review-scroll::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .review-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.15);
+            border-radius: 9999px;
           }
         `}
       </style>

@@ -25,13 +25,13 @@ export default function OfficePage() {
           title="Ο Χώρος μας"
           paragraph={
             <>
-              <div>
+              <p>
                 Στη <strong className="font-great-vibes">Believe in Yourself</strong> σε υποδεχόμαστε σε έναν φωτεινό και ζεστό χώρο, στην περιοχή της Κηφισιάς. Το γραφείο μας έχει σχεδιαστεί για να προσφέρει ηρεμία και εμπιστοσύνη από την πρώτη στιγμή, χωρίς πρόβλημα parking!
-              </div>
+              </p>
 
-              <div className="mt-6">
+              <p className="mt-6">
                 <strong>Εδώ μπορούμε μαζί:</strong>
-              </div>
+              </p>
 
               <ul className="list-disc list-inside mt-2 space-y-1">
                 <li>Να γνωριστούμε και να συζητήσουμε για τις ανάγκες, τους στόχους και τις προτεραιότητές σου.</li>
