@@ -22,7 +22,7 @@ export default function UploadModal({
   const fileInputRef = useRef();
 
   const options = [
-    { value: "DIET", label: "Δίαιτα" },
+    { value: "DIET", label: "Διατροφή" },
     { value: "MEASUREMENT", label: "Μέτρηση" },
     { value: "PHOTO", label: "Λοιπά Αρχεία" },
   ];
