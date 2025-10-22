@@ -7,16 +7,9 @@ import EditClientModal from "./EditClientModal";
 import ClientInfoCard from "./ClientInfoCard";
 import DocumentList from "./DocumentList";
 
-
 import { deleteClient, updateClient } from "../../../services/clients";
-import {
-  requestUpload,
-  uploadToStorage,
-  getDownloadUrl,
-  deleteDocument, finalizeUpload,
-} from "../../../services/documents";
-import {router} from "next/client";
-import {useRouter} from "next/navigation";
+import { getDownloadUrl, deleteDocument } from "../../../services/documents";
+import { useRouter } from "next/navigation";
 
 export default function ClientDetail({ client, mode = "admin" }) {
   const [activeTab, setActiveTab] = useState("diet");
@@ -27,7 +20,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
 
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState([]); // treat as array for multi-file UX
   const [docType, setDocType] = useState("DIET");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
@@ -46,8 +39,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
 
   useEffect(() => {
     if (isUploadOpen) {
-      // modal just opened → reset everything
-      setFile(null);
+      setFile([]);
       setDocType("DIET");
       setDescription("");
       setDate(new Date().toISOString().split("T")[0]);
@@ -55,12 +47,9 @@ export default function ClientDetail({ client, mode = "admin" }) {
     }
   }, [isUploadOpen]);
 
-
   // --- Group docs by month/year ---
   useEffect(() => {
     const grouped = {};
-
-    // normalize + sort all docs by date desc first
     const sortedDocs = [...(clientData.documents || [])].sort(
       (a, b) => new Date(b.date) - new Date(a.date)
     );
@@ -82,7 +71,6 @@ export default function ClientDetail({ client, mode = "admin" }) {
     setGroupedDocs(grouped);
   }, [clientData.documents, activeTab, dateFilter]);
 
-
   const handleDeleteClient = async () => {
     if (
       !confirm(
@@ -90,24 +78,23 @@ export default function ClientDetail({ client, mode = "admin" }) {
         "Πρόκειται να διαγράψετε οριστικά τα προσωπικά στοιχεία " +
         "καθώς επίσης και όλα τα αρχεία που αφορούν τον πελάτη!"
       )
-    ) return;
+    )
+      return;
 
     try {
-      await deleteClient(clientData.id); // if it resolves, consider it done
+      await deleteClient(clientData.id);
       alert("Ο πελάτης διαγράφηκε επιτυχώς!");
-      window.location.assign("/admin"); // hard reload avoids any stale state
+      window.location.assign("/admin");
     } catch (err) {
       console.error(err);
       alert("Σφάλμα κατά τη διαγραφή πελάτη");
     }
   };
 
-
   const handleEditSave = async () => {
     try {
       setStatus("Αποθήκευση...");
       const updated = await updateClient(clientData.id, formData);
-      console.log("Response from updateClient API: ", updated);
       setFormData({
         firstName: updated.firstName,
         lastName: updated.lastName,
@@ -126,52 +113,80 @@ export default function ClientDetail({ client, mode = "admin" }) {
     }
   };
 
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    if (!file) return setStatus("Επιλέξτε αρχείο.");
+  const handleUpload = async ({ files, meta, perFileMeta  }) => {
+    if (!files || files.length === 0) {
+      setStatus("Επιλέξτε τουλάχιστον ένα αρχείο.");
+      return;
+    }
 
     try {
-      setStatus("Δημιουργία upload URL...");
-      // STEP 1: presign (NO DB write)
-      const { uploadUrl, filePath } = await requestUpload({
-        clientId: clientData.id,
-        fileName: file.name,
-      });
+      setBusy(true);
+      setStatus("Δημιουργία URL μεταφόρτωσης...");
 
-      setStatus("Ανέβασμα αρχείου...");
-      // STEP 2: upload to B2
-      await uploadToStorage(uploadUrl, file);
+      // 1) presign batch
+      const pres = await fetch("/api/documents/presign-batch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientId: clientData.id,
+          files: files.map((f, i) => ({
+            fileName: f.name,
+            type: perFileMeta[i]?.type || meta.defaultType,
+            description: (perFileMeta[i]?.description ?? meta.defaultDescription) || null,
+            date: perFileMeta[i]?.date || meta.defaultDate,
+          })),
+        }),
+      }).then(r=>r.json());
 
+      if (!pres?.ok) throw new Error(pres?.error || "Αποτυχία presign.");
+
+      // 2) direct uploads
+      setStatus("Ανέβασμα αρχείων...");
+      await Promise.all(
+        pres.items.map((it, idx) =>
+          fetch(it.uploadUrl, {
+            method: "PUT",
+            body: files[idx],
+          }).then((r) => {
+            if (!r.ok) throw new Error(`Αποτυχία στο ανέβασμα: ${files[idx].name}`);
+          })
+        )
+      );
+
+      // 3) finalize
       setStatus("Οριστικοποίηση...");
-      // STEP 3: finalize (verify in B2 → write DB)
-      const { doc } = await finalizeUpload({
-        clientId: clientData.id,
-        fileName: file.name,
-        type: docType,
-        description,
-        date,
-        filePath,
-      });
+      const fin = await fetch("/api/documents/finalize-batch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientId: clientData.id,
+          sessionId: pres.sessionId,
+          items: pres.items,
+          cleanupOnFail: true,
+        }),
+      }).then((r) => r.json());
 
-      // Only now append to UI
+      if (!fin?.ok) throw new Error(fin?.error || "Αποτυχία οριστικοποίησης.");
+
+      const newDocs = (fin.docs || []).map((doc) => ({
+        ...doc,
+        date: new Date(doc.date).toISOString(),
+      }));
+
       setClientData((prev) => ({
         ...prev,
-        documents: [
-          ...(prev.documents || []),
-          { ...doc, date: new Date(doc.date).toISOString() },
-        ],
+        documents: [...(prev.documents || []), ...newDocs],
       }));
 
       setStatus("✅ Επιτυχής μεταφόρτωση!");
       setIsUploadOpen(false);
     } catch (err) {
       console.error(err);
-      setStatus("❌ Σφάλμα στην μεταφόρτωση");
+      setStatus("❌ Σφάλμα στη μεταφόρτωση");
+    } finally {
+      setBusy(false);
     }
   };
-
-
-
 
   const handleDownload = async (docId) => {
     try {
@@ -188,9 +203,12 @@ export default function ClientDetail({ client, mode = "admin" }) {
   };
 
   const handleDeleteDocument = async (id) => {
-    if (!confirm("Θέλετε σίγουρα να διαγράψετε αυτό το αρχείο?\n" +
-      "\n" +
-      "Η διαγραφή είναι οριστική!")) return;
+    if (
+      !confirm(
+        "Θέλετε σίγουρα να διαγράψετε αυτό το αρχείο?\n\nΗ διαγραφή είναι οριστική!"
+      )
+    )
+      return;
     try {
       await deleteDocument(id);
       setClientData((prev) => ({
@@ -239,7 +257,6 @@ export default function ClientDetail({ client, mode = "admin" }) {
     }
   };
 
-
   return (
     <div>
       {/* Client Info Card */}
@@ -255,47 +272,50 @@ export default function ClientDetail({ client, mode = "admin" }) {
             onDelete: handleDeleteClient,
             onUpload: () => setIsUploadOpen(true),
             onNotify: handleNotifyUser,
-            notifyLoading
+            notifyLoading,
           }
           : {})}
       />
-
-      {/*{status && <p className="px-4 text-xs sm:text-sm">{status}</p>}*/}
 
       <div>
         <DocumentList
           documents={groupedDocs}
           onDownload={handleDownload}
-          {...(mode === "admin" ? {onDelete: handleDeleteDocument} : {})}
+          {...(mode === "admin" ? { onDelete: handleDeleteDocument } : {})}
         />
       </div>
 
-      {/* Admin-only modals */}
+      {/* Admin-only modals: conditionally mount when open */}
       {mode === "admin" && (
         <>
-          <EditClientModal
-            isOpen={isEditing}
-            onClose={() => setIsEditing(false)}
-            formData={formData}
-            setFormData={setFormData}
-            onSave={handleEditSave}
-            status={status}
-          />
+          {isEditing && (
+            <EditClientModal
+              isOpen
+              onClose={() => setIsEditing(false)}
+              formData={formData}
+              setFormData={setFormData}
+              onSave={handleEditSave}
+              status={status}
+            />
+          )}
 
-          <UploadModal
-            isOpen={isUploadOpen}
-            onClose={() => setIsUploadOpen(false)}
-            onSubmit={handleUpload}
-            file={file}
-            setFile={setFile}
-            docType={docType}
-            setDocType={setDocType}
-            description={description}
-            setDescription={setDescription}
-            status={status}
-            date={date}
-            setDate={setDate}
-          />
+          {isUploadOpen && (
+            <UploadModal
+              isOpen
+              onClose={() => setIsUploadOpen(false)}
+              onSubmit={handleUpload}   // expects { files, meta }
+              file={file}
+              setFile={setFile}
+              docType={docType}
+              setDocType={setDocType}
+              description={description}
+              setDescription={setDescription}
+              status={status}
+              date={date}
+              setDate={setDate}
+              loading={busy}
+            />
+          )}
         </>
       )}
     </div>

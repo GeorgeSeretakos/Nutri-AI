@@ -1,8 +1,15 @@
-import {S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand, HeadObjectCommand} from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+  GetObjectCommand,
+  HeadObjectCommand,
+  CopyObjectCommand,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({
-  region: "us-east-1", // dummy, B2 ignores this
+  region: "us-east-1", // Backblaze B2 S3-compatible ignores but requires a value
   endpoint: process.env.B2_ENDPOINT,
   credentials: {
     accessKeyId: process.env.B2_KEY_ID,
@@ -12,72 +19,134 @@ const s3 = new S3Client({
 
 const BUCKET = process.env.B2_BUCKET;
 
-// 1. Create signed URL for upload (PUT)
-export async function createUploadUrl(filePath, expiresIn = 60) {
+/* ------------------------------------------------------------------ */
+/* Signed URLs                                                         */
+/* ------------------------------------------------------------------ */
+
+// Upload (PUT) — used by client to send file directly to B2
+export async function createUploadUrl(filePath, expiresIn = 120) {
   const command = new PutObjectCommand({
     Bucket: BUCKET,
     Key: filePath,
   });
-  return await getSignedUrl(s3, command, { expiresIn });
+  return getSignedUrl(s3, command, { expiresIn });
 }
 
-// 2. Create signed URL for download (GET)
+// Download (GET)
 export async function createDownloadUrl(filePath, expiresIn = 60) {
   const command = new GetObjectCommand({
     Bucket: BUCKET,
     Key: filePath,
-    ResponseContentDisposition: `attachment; filename="${filePath.split("/").pop()}"`
+    ResponseContentDisposition: `attachment; filename="${filePath.split("/").pop()}"`,
   });
-  return await getSignedUrl(s3, command, { expiresIn });
+  return getSignedUrl(s3, command, { expiresIn });
 }
 
+// Alias kept for backwards-compat
+export async function getSignedUrlWrapper(filePath, expiresIn = 60) {
+  return createDownloadUrl(filePath, expiresIn);
+}
 
-// 3. Delete file
-// export async function deleteFromStorage(filePath) {
-//   const command = new DeleteObjectCommand({
-//     Bucket: BUCKET,
-//     Key: filePath,
-//   });
-//   await s3.send(command);
-//   return true;
-// }
+/* ------------------------------------------------------------------ */
+/* Low-level object ops (for server finalize/cleanup)                  */
+/* ------------------------------------------------------------------ */
 
+// HEAD — verify existence (throws if not found)
+export async function headObject(key) {
+  return s3.send(new HeadObjectCommand({ Bucket: BUCKET, Key: key }));
+}
+
+// COPY staging -> final
+export async function copyObject(srcKey, dstKey) {
+  // CopySource must URL-encode the *key* portion
+  const copySource = `${BUCKET}/${encodeURIComponent(srcKey)}`;
+  try {
+    const res = await s3.send(
+      new CopyObjectCommand({
+        Bucket: BUCKET,
+        Key: dstKey,
+        CopySource: copySource,
+      })
+    );
+    console.info(
+      JSON.stringify({
+        level: "info",
+        msg: "storage:copy_success",
+        srcKey,
+        dstKey,
+        etag: res.CopyObjectResult?.ETag || null,
+      })
+    );
+    return res;
+  } catch (err) {
+    console.error("storage:copy_error", { srcKey, dstKey, err });
+    throw err;
+  }
+}
+
+// Simple delete (no head/verify)
+export async function deleteObject(key) {
+  try {
+    await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
+    console.info(
+      JSON.stringify({
+        level: "info",
+        msg: "storage:delete_issued",
+        key,
+      })
+    );
+    return true;
+  } catch (err) {
+    console.error("storage:delete_error", err);
+    throw err;
+  }
+}
+
+/**
+ * Idempotent delete with HEAD pre/post checks.
+ * Returns true if the object is confirmed gone (or never existed).
+ */
 export async function deleteFromStorage(filePath) {
   if (!filePath) throw new Error("deleteFromStorage: missing filePath");
 
-  // 1) Check existence first
+  // 1) HEAD (existence check)
   try {
     await s3.send(new HeadObjectCommand({ Bucket: BUCKET, Key: filePath }));
-    console.info(JSON.stringify({
-      level: "info",
-      msg: "storage:head_found",
-      bucket: BUCKET,
-      key: filePath
-    }));
-  } catch (err) {
-    // If it’s a 404, the object doesn’t exist; S3 delete would be a no-op
-    if (err?.$metadata?.httpStatusCode === 404) {
-      console.warn(JSON.stringify({
-        level: "warn",
-        msg: "storage:head_not_found",
+    console.info(
+      JSON.stringify({
+        level: "info",
+        msg: "storage:head_found",
         bucket: BUCKET,
-        key: filePath
-      }));
-      return true; // idempotent: nothing to delete
+        key: filePath,
+      })
+    );
+  } catch (err) {
+    if (err?.$metadata?.httpStatusCode === 404) {
+      console.warn(
+        JSON.stringify({
+          level: "warn",
+          msg: "storage:head_not_found",
+          bucket: BUCKET,
+          key: filePath,
+        })
+      );
+      return true; // already gone
     }
     console.error("storage:head_error", err);
     throw err;
   }
 
-  // 2) Delete
+  // 2) DELETE
   try {
     await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: filePath }));
-    console.info(JSON.stringify({
-      level: "info",
-      msg: "storage:deleted_attempted",
-      bucket: BUCKET,
-      key: filePath
-    }));
+    console.info(
+      JSON.stringify({
+        level: "info",
+        msg: "storage:deleted_attempted",
+        bucket: BUCKET,
+        key: filePath,
+      })
+    );
   } catch (err) {
     console.error("storage:delete_error", err);
     throw err;
@@ -86,21 +155,25 @@ export async function deleteFromStorage(filePath) {
   // 3) Verify deletion
   try {
     await s3.send(new HeadObjectCommand({ Bucket: BUCKET, Key: filePath }));
-    console.error(JSON.stringify({
-      level: "error",
-      msg: "storage:still_exists_after_delete",
-      bucket: BUCKET,
-      key: filePath
-    }));
-    return false; // unexpected: still present
+    console.error(
+      JSON.stringify({
+        level: "error",
+        msg: "storage:still_exists_after_delete",
+        bucket: BUCKET,
+        key: filePath,
+      })
+    );
+    return false;
   } catch (err) {
     if (err?.$metadata?.httpStatusCode === 404) {
-      console.info(JSON.stringify({
-        level: "info",
-        msg: "storage:confirmed_deleted",
-        bucket: BUCKET,
-        key: filePath
-      }));
+      console.info(
+        JSON.stringify({
+          level: "info",
+          msg: "storage:confirmed_deleted",
+          bucket: BUCKET,
+          key: filePath,
+        })
+      );
       return true;
     }
     console.error("storage:post_head_error", err);
@@ -108,7 +181,19 @@ export async function deleteFromStorage(filePath) {
   }
 }
 
-// 4. Alias for download signed URL
-export async function getSignedUrlWrapper(filePath, expiresIn = 60) {
-  return createDownloadUrl(filePath, expiresIn);
+/* ------------------------------------------------------------------ */
+/* Helpers you may want server-side                                   */
+/* ------------------------------------------------------------------ */
+
+// Convenience existence check → boolean
+export async function exists(key) {
+  try {
+    await headObject(key);
+    return true;
+  } catch (err) {
+    if (err?.$metadata?.httpStatusCode === 404) return false;
+    throw err;
+  }
 }
+
+export { s3, BUCKET };

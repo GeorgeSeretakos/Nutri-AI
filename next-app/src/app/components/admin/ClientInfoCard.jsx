@@ -139,7 +139,16 @@ export default function ClientInfoCard({
           <DateFilter setDateFilter={setDateFilter} />
         </div>
         <div className="w-full">
-          <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          <HeaderTabs
+            tabs={[
+              { id: "diet", label: "Διατροφές" },
+              { id: "measurement", label: "Μετρήσεις" },
+              { id: "photo", label: "Λοιπά Αρχεία" },
+            ]}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            size="input"
+          />
         </div>
       </div>
     </div>
