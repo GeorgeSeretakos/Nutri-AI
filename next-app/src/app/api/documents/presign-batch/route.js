@@ -25,7 +25,7 @@ export async function POST(req) {
     const cleanName = String(f.fileName || "").replace(/\s+/g, "_");
     const stagingPath = `staging/${ownerId}/${sessionId}/${now}-${cleanName}`;
     const finalPath   = `${ownerId}/${now}-${cleanName}`;
-    const uploadUrl   = await createUploadUrl(stagingPath, 120);
+    const uploadUrl   = await createUploadUrl(stagingPath);
     return {
       fileName: f.fileName,
       type: f.type,

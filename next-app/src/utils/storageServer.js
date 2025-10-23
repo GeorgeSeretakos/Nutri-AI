@@ -24,7 +24,7 @@ const BUCKET = process.env.B2_BUCKET;
 /* ------------------------------------------------------------------ */
 
 // Upload (PUT) — used by client to send file directly to B2
-export async function createUploadUrl(filePath, expiresIn = 120) {
+export async function createUploadUrl(filePath, expiresIn = 900) {
   const command = new PutObjectCommand({
     Bucket: BUCKET,
     Key: filePath,
