@@ -4,7 +4,7 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import { Trash2 } from "lucide-react";
 import HeaderTabs from "./HeaderTabs";
 
-const ACCEPT = ["application/pdf", "image/jpeg", "image/png", "image/webp"].join(",");
+const ACCEPT = "*/*";
 
 const CATEGORIES = [
   { id: "DIET", value: "DIET", label: "Διατροφές" },
@@ -126,7 +126,9 @@ export default function UploadModal({
               aria-label="Επιλογή ή απόθεση αρχείων"
             >
               <p className="text-gray-700 font-medium">Κάνε κλικ ή σύρε αρχεία εδώ</p>
-              <p className="text-xs text-gray-500 mt-1">Επιτρέπονται: PDF, JPG, PNG, WEBP</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Επιτρέπονται όλα τα είδη αρχείων
+              </p>
             </div>
             <input
               type="file"
