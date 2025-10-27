@@ -465,7 +465,7 @@ const posts = [
   {
     slug: "energy-balls",
     title: "ΜΠΑΛΑΚΙΑ ΕΝΕΡΓΕΙΑΣ (19 μπαλάκια)",
-    image: "/images/blog/7.png",
+    image: "/images/blog/7.jpg",
     category: "recipes",
     contentHtml: `
     <h3>Υλικά:</h3>
