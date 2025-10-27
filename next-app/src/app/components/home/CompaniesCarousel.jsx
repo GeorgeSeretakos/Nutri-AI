@@ -2,6 +2,7 @@
 
 import { useKeenSlider } from "keen-slider/react";
 import { useEffect } from "react";
+import { useLocale } from "@lib/locale";
 import "keen-slider/keen-slider.min.css";
 
 const logos = [
@@ -29,10 +30,26 @@ const logos = [
   "/images/companies/hellenic-cables.jpg",
   "/images/companies/solinourgeia-korinthou.jpg",
   "/images/companies/plenitude.jpg",
-  "/images/companies/alpha_bank.jpg"
+  "/images/companies/alpha_bank.jpg",
 ];
 
+const M = {
+  el: {
+    title: "Εταιρείες που μας εμπιστεύθηκαν",
+    desc:
+      "Στο πέρασμα των χρόνων, πάνω από 30 εταιρείες μας εμπιστεύθηκαν για την ευεξία του προσωπικού τους.",
+  },
+  en: {
+    title: "Companies that trusted us",
+    desc:
+      "Over the years, more than 30 companies have trusted us with their team’s wellbeing.",
+  },
+};
+
 export default function CompaniesCarousel() {
+  const locale = useLocale();
+  const T = M[locale] || M.el;
+
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     slides: { perView: 5, spacing: 15 },
@@ -52,10 +69,8 @@ export default function CompaniesCarousel() {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-12">
-      <h2 className="title-black">Εταιρείες που μας εμπιστεύθηκαν</h2>
-      <p className="text-lg text-gray-700 mb-8">
-        Στο πέρασμα των χρόνων, πάνω από 30 εταιρείες μας εμπιστεύθηκαν για την ευεξία του προσωπικού τους.
-      </p>
+      <h2 className="title-black">{T.title}</h2>
+      <p className="text-lg text-gray-700 mb-8">{T.desc}</p>
 
       <div ref={sliderRef} className="keen-slider px-4">
         {logos.map((src, index) => (
@@ -69,6 +84,8 @@ export default function CompaniesCarousel() {
                 src={src}
                 alt={`Company logo ${index + 1}`}
                 className="max-h-full max-w-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import DateFilter from "./DateFilter";
 import HeaderTabs from "./HeaderTabs";
 import { Edit, Upload, Trash2, Mail, Loader2 } from "lucide-react";
+import { useLocale } from "@lib/locale";
 
 export default function ClientInfoCard({
                                          client,
@@ -14,11 +17,49 @@ export default function ClientInfoCard({
                                          setActiveTab,
                                          setDateFilter,
                                        }) {
+  const locale = useLocale();
+  const L = {
+    el: {
+      edit: "Επεξεργασία",
+      notify: "Ειδοποίηση χρήστη",
+      noEmail: "Δεν υπάρχει email για τον πελάτη",
+      totalDocs: "Συνολικά έγγραφα",
+      upload: "Ανέβασμα",
+      lastUpdated: "Τελευταία τροποποίηση",
+      deleteClient: "Διαγραφή πελάτη",
+      emailPrefix: "email",
+      telPrefix: "Τηλ",
+      tabs: {
+        diet: "Διατροφές",
+        measurement: "Μετρήσεις",
+        photo: "Λοιπά Αρχεία",
+      },
+      dtLocale: "el-GR",
+    },
+    en: {
+      edit: "Edit",
+      notify: "Notify user",
+      noEmail: "No email for this client",
+      totalDocs: "Total documents",
+      upload: "Upload",
+      lastUpdated: "Last updated",
+      deleteClient: "Delete client",
+      emailPrefix: "email",
+      telPrefix: "Tel",
+      tabs: {
+        diet: "Meal Plans",
+        measurement: "Measurements",
+        photo: "Other Files",
+      },
+      dtLocale: "en-GB",
+    },
+  }[locale] || L?.el;
+
   const totalDocs = client.documents?.length || 0;
 
   const formatDate = (date) =>
     date
-      ? new Intl.DateTimeFormat("el-GR", {
+      ? new Intl.DateTimeFormat(L.dtLocale, {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
@@ -46,8 +87,8 @@ export default function ClientInfoCard({
                 type="button"
                 onClick={onEdit}
                 className="p-1 rounded hover:bg-gray-100 text-gray-600"
-                title="Επεξεργασία"
-                aria-label="Επεξεργασία"
+                title={L.edit}
+                aria-label={L.edit}
               >
                 <Edit className="w-4 h-4" />
               </button>
@@ -58,7 +99,7 @@ export default function ClientInfoCard({
           {client.email && (
             <div className="text-gray-600 flex items-center gap-2 min-w-0">
               <span className="break-all">
-                email:{" "}
+                {L.emailPrefix}:{" "}
                 <a
                   href={`mailto:${client.email}`}
                   className="underline-offset-2 hover:underline"
@@ -72,12 +113,8 @@ export default function ClientInfoCard({
                   onClick={onNotify}
                   disabled={!client.email || notifyLoading}
                   className="p-1 rounded hover:bg-gray-100 text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
-                  title={
-                    client.email
-                      ? "Ειδοποίηση χρήστη"
-                      : "Δεν υπάρχει email για τον πελάτη"
-                  }
-                  aria-label="Ειδοποίηση χρήστη"
+                  title={client.email ? L.notify : L.noEmail}
+                  aria-label={L.notify}
                 >
                   {notifyLoading ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -89,12 +126,16 @@ export default function ClientInfoCard({
             </div>
           )}
 
-          {client.phone && <p className="text-gray-600">Tel: {client.phone}</p>}
+          {client.phone && (
+            <p className="text-gray-600">
+              {L.telPrefix}: {client.phone}
+            </p>
+          )}
 
           <div className="mt-3 space-y-1 text-sm">
             <div className="flex items-center gap-2">
               <p>
-                Συνολικά έγγραφα:{" "}
+                {L.totalDocs}:{" "}
                 <span className="font-semibold">{totalDocs}</span>
               </p>
               {mode === "admin" && (
@@ -102,8 +143,8 @@ export default function ClientInfoCard({
                   type="button"
                   onClick={onUpload}
                   className="p-1 rounded hover:bg-gray-100 text-gray-600"
-                  title="Ανέβασμα"
-                  aria-label="Ανέβασμα"
+                  title={L.upload}
+                  aria-label={L.upload}
                 >
                   <Upload className="w-4 h-4" />
                 </button>
@@ -112,7 +153,7 @@ export default function ClientInfoCard({
 
             <div className="flex items-center gap-2">
               <p>
-                Τελευταία τροποποίηση:{" "}
+                {L.lastUpdated}:{" "}
                 <span className="font-semibold">
                   {formatDate(client.updatedAt)}
                 </span>
@@ -122,8 +163,8 @@ export default function ClientInfoCard({
                   type="button"
                   onClick={onDelete}
                   className="p-1 rounded hover:bg-gray-100 text-gray-600"
-                  title="Διαγραφή πελάτη"
-                  aria-label="Διαγραφή πελάτη"
+                  title={L.deleteClient}
+                  aria-label={L.deleteClient}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -133,7 +174,7 @@ export default function ClientInfoCard({
         </div>
       </div>
 
-      {/* Right: Filters (fixed width, vertically centered) */}
+      {/* Right: Filters */}
       <div className="md:self-center w-full md:w-[28rem] lg:w-[32rem] flex flex-col gap-3">
         <div className="w-full">
           <DateFilter setDateFilter={setDateFilter} />
@@ -141,9 +182,9 @@ export default function ClientInfoCard({
         <div className="w-full">
           <HeaderTabs
             tabs={[
-              { id: "diet", label: "Διατροφές" },
-              { id: "measurement", label: "Μετρήσεις" },
-              { id: "photo", label: "Λοιπά Αρχεία" },
+              { id: "diet", label: L.tabs.diet },
+              { id: "measurement", label: L.tabs.measurement },
+              { id: "photo", label: L.tabs.photo },
             ]}
             activeTab={activeTab}
             setActiveTab={setActiveTab}

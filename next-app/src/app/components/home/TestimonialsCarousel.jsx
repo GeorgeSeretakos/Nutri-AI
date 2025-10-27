@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { useLocale } from "@lib/locale";
 import testimonials from "@/../public/data/testimonials";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -8,16 +9,29 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 export default function TestimonialsCarousel() {
+  const locale = useLocale();
+  const isEn = locale === "en";
+
+  const M = {
+    el: {
+      title: "Τι λένε για εμάς",
+      desc: "Μερικά λόγια από ανθρώπους που μας εμπιστεύτηκαν και είδαν τη ζωή τους να αλλάζει.",
+    },
+    en: {
+      title: "What people say about us",
+      desc: "A few words from people who trusted us and saw their lives change.",
+    },
+  };
+  const L = M[locale] || M.el;
+
   return (
     <div className="relative bg-cover bg-center px-4 flex justify-center items-center py-12 sm:py-16 md:py-20">
       {/* Content */}
       <div className="z-10 w-full">
         {/* Section Title */}
         <div className="max-w-6xl mx-auto">
-          <h2 className="title-black text-left">Τι λένε για εμάς</h2>
-          <p className="text-gray-600 mt-2 max-w-xl text-left">
-            Μερικά λόγια από ανθρώπους που μας εμπιστεύτηκαν και είδαν τη ζωή τους να αλλάζει.
-          </p>
+          <h2 className="title-black text-left">{L.title}</h2>
+          <p className="text-gray-600 mt-2 max-w-xl text-left">{L.desc}</p>
         </div>
 
         {/* Carousel */}
@@ -35,50 +49,56 @@ export default function TestimonialsCarousel() {
               1024: { slidesPerView: 3, spaceBetween: 24 },
             }}
           >
-            {testimonials.map((r, idx) => (
-              <SwiperSlide key={idx} className="flex">
-                {/* Card with constant height */}
-                <div className="bg-white shadow rounded-xl p-4 md:p-5 text-left flex flex-col flex-1 h-64 md:h-72">
-                  {/* Header (fixed) */}
-                  <div className="flex items-center gap-2 shrink-0">
-                    {r.avatar ? (
-                      <img
-                        src={r.avatar}
-                        alt={r.name}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    ) : (
-                      <div
-                        className={`w-10 h-10 ${r.color} text-white flex items-center justify-center rounded-full font-bold`}
-                      >
-                        {r.initial}
+            {testimonials.map((r, idx) => {
+              const years = isEn ? (r.years_en || r.years_el) : (r.years_el || r.years_en);
+              const text = isEn ? (r.text_en || r.text_el) : (r.text_el || r.text_en);
+
+              return (
+                <SwiperSlide key={idx} className="flex">
+                  {/* Card with constant height */}
+                  <div className="bg-white shadow rounded-xl p-4 md:p-5 text-left flex flex-col flex-1 h-64 md:h-72">
+                    {/* Header (fixed) */}
+                    <div className="flex items-center gap-2 shrink-0">
+                      {r.avatar ? (
+                        <img
+                          src={r.avatar}
+                          alt={r.name}
+                          className="w-10 h-10 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className={`w-10 h-10 ${r.color} text-white flex items-center justify-center rounded-full font-bold`}
+                        >
+                          {r.initial}
+                        </div>
+                      )}
+                      <div className="flex flex-col">
+                        <span className="font-bold text-gray-800">{r.name}</span>
+                        <span className="text-xs text-gray-500">{years}</span>
                       </div>
-                    )}
-                    <div className="flex flex-col">
-                      <span className="font-bold text-gray-800">{r.name}</span>
-                      <span className="text-xs text-gray-500">{r.years}</span>
+                      <div className="ml-auto">
+                        <img src="/icons/google.png" alt="Google" className="w-5 h-5" />
+                      </div>
                     </div>
-                    <div className="ml-auto">
-                      <img src="/icons/google.png" alt="Google" className="w-5 h-5" />
+
+                    {/* Stars */}
+                    <div className="text-yellow-400 text-sm md:text-base leading-none mt-2 shrink-0">
+                      {"★".repeat(r.stars || 5)}
+                    </div>
+
+                    {/* Review */}
+                    <div className="mt-2 text-gray-700 text-sm leading-relaxed flex-1 overflow-y-auto pr-1 review-scroll">
+                      {text}
                     </div>
                   </div>
-
-                  {/* Stars */}
-                  <div className="text-yellow-400 text-sm md:text-base leading-none mt-2 shrink-0">
-                    {"★".repeat(r.stars || 5)}
-                  </div>
-
-                  {/* Review */}
-                  <div className="mt-2 text-gray-700 text-sm leading-relaxed flex-1 overflow-y-auto pr-1 review-scroll">
-                    {r.text}
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>
 
+      {/* Styles */}
       <style>
         {`
           .swiper-slide {

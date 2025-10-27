@@ -1,4 +1,30 @@
+"use client";
+
+import { useLocale } from "@lib/locale";
+
+const M = {
+  el: {
+    stats: [
+      { value: "2000+", label: "Ευχαριστημένοι Πελάτες" },
+      { value: "8000+", label: "Συνεδρίες" },
+      { value: "30+", label: "Διαφορετικές Συνεργασίες" },
+      { value: "5", label: "Βασικοί Συνεργάτες" },
+    ],
+  },
+  en: {
+    stats: [
+      { value: "2000+", label: "Happy Clients" },
+      { value: "8000+", label: "Sessions" },
+      { value: "30+", label: "Collaborations" },
+      { value: "5", label: "Core Partners" },
+    ],
+  },
+};
+
 export default function StatsSection() {
+  const locale = useLocale();
+  const L = M[locale] || M.el;
+
   return (
     <section className="relative h-[60vh] overflow-hidden">
       {/* Background image */}
@@ -16,22 +42,12 @@ export default function StatsSection() {
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <h2>2000+</h2>
-            <p className="font-semibold mt-1">Ευχαριστημένοι Πελάτες</p>
-          </div>
-          <div>
-            <h2>8000+</h2>
-            <p className="font-semibold mt-1">Συνεδρίες</p>
-          </div>
-          <div>
-            <h2>30+</h2>
-            <p className="font-semibold mt-1">Διαφορετικές Συνεργασίες</p>
-          </div>
-          <div>
-            <h2>5</h2>
-            <p className="font-semibold mt-1">Βασικοί Συνεργάτες</p>
-          </div>
+          {L.stats.map((item, idx) => (
+            <div key={idx}>
+              <h2>{item.value}</h2>
+              <p className="font-semibold mt-1">{item.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

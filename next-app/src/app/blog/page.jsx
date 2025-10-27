@@ -1,23 +1,39 @@
 "use client";
+
 import { useState } from "react";
+import { useLocale } from "@lib/locale";
 import posts from "../../../public/data/blog";
 import BlogCard from "../components/blog/BlogCard";
 import Navbar from "../components/Navbar";
 
 export default function BlogPage() {
   const [category, setCategory] = useState("recipes");
+  const locale = useLocale();
 
-  const tabs = [
-    { value: "recipes", label: "Συνταγές" },
-    { value: "articles", label: "Αρθρογραφία" },
-    { value: "media", label: "Media" },
-  ];
+  const M = {
+    el: {
+      tabs: [
+        { value: "recipes", label: "Συνταγές" },
+        { value: "articles", label: "Αρθρογραφία" },
+        { value: "media", label: "Media" },
+      ],
+    },
+    en: {
+      tabs: [
+        { value: "recipes", label: "Recipes" },
+        { value: "articles", label: "Articles" },
+        { value: "media", label: "Media" },
+      ],
+    },
+  };
+  const T = M[locale] || M.el;
 
   const filteredPosts = posts.filter((p) => p.category === category);
 
   return (
     <main className="mt-16">
       <Navbar />
+
       {/* Tabs */}
       <div className="w-full bg-teal-800 shadow-sm">
         <nav
@@ -31,7 +47,7 @@ export default function BlogPage() {
             scrollbar-hide
           "
         >
-          {tabs.map((tab) => (
+          {T.tabs.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setCategory(tab.value)}
@@ -40,6 +56,7 @@ export default function BlogPage() {
                   ? "border-yellow-400 text-white font-medium"
                   : "border-transparent hover:border-yellow-400 text-white"
               }`}
+              aria-current={category === tab.value ? "page" : undefined}
             >
               {tab.label}
             </button>

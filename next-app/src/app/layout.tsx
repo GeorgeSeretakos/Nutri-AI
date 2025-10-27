@@ -1,7 +1,8 @@
 // src/app/layout.tsx
 import { Geist, Geist_Mono, Great_Vibes, Manrope, Open_Sans, Roboto } from "next/font/google";
 import "./styles/globals.css";
-import Navbar from "./components/Navbar";
+import { cookies } from "next/headers";
+import { LocaleProvider } from "@lib/locale";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -11,17 +12,20 @@ const openSans = Open_Sans({ variable: "--font-open-sans", subsets: ["latin"] })
 const roboto = Roboto({ variable: "--font-roboto", subsets: ["latin"] });
 
 export const metadata = {
-    metadataBase: new URL('https://tonia-kaparelioti.gr'),
-    title: { default: 'Tonia Kaparelioti', template: '%s | Tonia Kaparelioti' },
-    description: '...',
-    alternates: { canonical: '/' },
+    metadataBase: new URL("https://tonia-kaparelioti.gr"),
+    title: { default: "Tonia Kaparelioti", template: "%s | Tonia Kaparelioti" },
+    description: "...",
+    alternates: { canonical: "/" },
     robots: { index: true, follow: true },
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+    const cookieStore = cookies();
+    const cookieLocale = cookieStore.get("locale")?.value;
+    const locale = (cookieLocale === "en" || cookieLocale === "el") ? cookieLocale : "el";
+
     return (
-        <html lang="el">
+        <html lang={locale}>
         <body
             className={`
           ${manrope.variable} ${openSans.variable} ${roboto.variable}
@@ -29,7 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           antialiased
         `}
         >
-        <main>{children}</main>
+        <LocaleProvider locale={locale}>
+            <main>{children}</main>
+        </LocaleProvider>
         </body>
         </html>
     );

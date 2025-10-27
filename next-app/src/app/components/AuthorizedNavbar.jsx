@@ -4,23 +4,44 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, LogOut } from "lucide-react";
+import { useLocale } from "@lib/locale";
 
 export default function AuthorizedNavbar({
-role,
-showLogout = true,
-logoutAction = "/api/logout",
-}) {
+                                           role,
+                                           showLogout = true,
+                                           logoutAction = "/api/logout",
+                                         }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale(); // "el" | "en"
 
   useEffect(() => {
     setMobileOpen(false); // close drawer on route change
   }, [pathname]);
 
+  const L = {
+    el: {
+      brandAdmin: "Believe in Yourself · Admin Panel",
+      brandClient: "Believe in Yourself · Nutrition Portal",
+      clients: "Πελάτες",
+      logout: "Αποσύνδεση",
+      openMenu: "Άνοιγμα μενού",
+      closeMenu: "Κλείσιμο μενού",
+    },
+    en: {
+      brandAdmin: "Believe in Yourself · Admin Panel",
+      brandClient: "Believe in Yourself · Nutrition Portal",
+      clients: "Clients",
+      logout: "Log out",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+    },
+  }[locale] || L.el;
+
   // Menu items per role (easy to extend)
   const items =
     role === "admin"
-      ? [{ href: "/admin", label: "Πελάτες" }]
+      ? [{ href: "/admin", label: L.clients }]
       : [];
 
   return (
@@ -34,14 +55,15 @@ logoutAction = "/api/logout",
               className="inline-flex items-center gap-2 rounded-md px-2 py-1 -mx-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-800"
             >
               <span className="text-white font-semibold tracking-tight">
-                {role === "admin"
-                  ? "Believe in Yourself · Admin Panel"
-                  : "Believe in Yourself · Nutrition Portal"}
+                {role === "admin" ? L.brandAdmin : L.brandClient}
               </span>
             </div>
 
             {/* Desktop menu */}
             <div className="hidden sm:flex items-center gap-2">
+              {/* Language toggle */}
+              <LangToggle currentLocale={locale} />
+
               {items.map((it) => (
                 <NavItem key={it.href} href={it.href} label={it.label} />
               ))}
@@ -52,22 +74,25 @@ logoutAction = "/api/logout",
                     type="submit"
                     className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 active:bg-white/15 transition
                                focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 hover:cursor-pointer"
-                    title="Αποσύνδεση"
+                    title={L.logout}
                   >
                     <LogOut className="w-4 h-4" />
-                    <span className="hidden md:inline">Αποσύνδεση</span>
+                    <span className="hidden md:inline">{L.logout}</span>
                   </button>
                 </form>
               )}
             </div>
 
             {/* Mobile toggle */}
-            <div className="sm:hidden">
+            <div className="sm:hidden flex items-center gap-2">
+              {/* Language toggle (compact) */}
+              <LangToggle currentLocale={locale} size="sm" />
+
               <button
                 onClick={() => setMobileOpen((v) => !v)}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
-                aria-label={mobileOpen ? "Κλείσιμο μενού" : "Άνοιγμα μενού"}
+                aria-label={mobileOpen ? L.closeMenu : L.openMenu}
                 className="p-2 rounded-md text-white/90 hover:text-white hover:bg-white/10 transition
                            focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-800"
               >
@@ -97,7 +122,7 @@ logoutAction = "/api/logout",
                                focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600"
                   >
                     <LogOut className="w-4 h-4" />
-                    Αποσύνδεση
+                    {L.logout}
                   </button>
                 </form>
               )}
@@ -156,5 +181,53 @@ function MobileItem({ href, label }) {
       <span>{label}</span>
       {isActive && <span className="h-1 w-1 rounded-full bg-teal-600" />}
     </Link>
+  );
+}
+
+/**
+ * Small EL/EN toggle.
+ * Persists to localStorage + cookie, then reloads so the app picks it up everywhere.
+ * size: "md" | "sm"
+ */
+function LangToggle({ currentLocale = "el", size = "md" }) {
+  const isGreek = currentLocale === "el";
+
+  const setLocale = (next) => {
+    try {
+      localStorage.setItem("locale", next);
+      document.cookie = `locale=${next};path=/;max-age=31536000`;
+    } catch {}
+    // Force refresh so SSR/edge or providers read the new cookie
+    window.location.reload();
+  };
+
+  const base =
+    "inline-flex items-center rounded-full border border-white/20 bg-white/10 text-white/90";
+  const sizing =
+    size === "sm" ? "text-[10px] h-7 px-1" : "text-xs h-8 px-1.5";
+  const pill =
+    "px-2 py-1 rounded-full transition whitespace-nowrap";
+  const active = "bg-white text-black";
+  const inactive = "hover:bg-white/20";
+
+  return (
+    <div className={`${base} ${sizing}`} role="group" aria-label="Language">
+      <button
+        type="button"
+        onClick={() => !isGreek && setLocale("el")}
+        className={`${pill} ${isGreek ? active : inactive}`}
+        aria-pressed={isGreek}
+      >
+        EL
+      </button>
+      <button
+        type="button"
+        onClick={() => isGreek && setLocale("en")}
+        className={`${pill} ${!isGreek ? active : inactive}`}
+        aria-pressed={!isGreek}
+      >
+        EN
+      </button>
+    </div>
   );
 }

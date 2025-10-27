@@ -10,8 +10,59 @@ import DocumentList from "./DocumentList";
 import { deleteClient, updateClient } from "../../../services/clients";
 import { getDownloadUrl, deleteDocument } from "../../../services/documents";
 import { useRouter } from "next/navigation";
+import { useLocale } from "@lib/locale";
 
 export default function ClientDetail({ client, mode = "admin" }) {
+  const locale = useLocale();
+  const T = {
+    el: {
+      // statuses
+      saving: "Αποθήκευση...",
+      saved: "✅ Αποθηκεύτηκε με επιτυχία!",
+      saveError: "❌ Σφάλμα στην αποθήκευση",
+      chooseFile: "Επιλέξτε τουλάχιστον ένα αρχείο.",
+      presign: "Δημιουργία URL μεταφόρτωσης...",
+      uploading: "Ανέβασμα αρχείων...",
+      finalizing: "Οριστικοποίηση...",
+      uploadOk: "✅ Επιτυχής μεταφόρτωση!",
+      uploadFail: "❌ Σφάλμα στη μεταφόρτωση",
+      notifyOk: "✅ Η ειδοποίηση στάλθηκε επιτυχώς.",
+      notifyFailPrefix: "❌ ",
+      notifyFail: "Σφάλμα στην αποστολή ειδοποίησης.",
+      networkFail: "❌ Σφάλμα δικτύου. Δοκίμασε ξανά.",
+      // confirms / alerts
+      confirmDeleteClient:
+        "Θέλετε σίγουρα να διαγράψετε τον πελάτη?\n\nΠρόκειται να διαγράψετε οριστικά τα προσωπικά στοιχεία καθώς επίσης και όλα τα αρχεία που αφορούν τον πελάτη!",
+      clientDeleted: "Ο πελάτης διαγράφηκε επιτυχώς!",
+      clientDeleteError: "Σφάλμα κατά τη διαγραφή πελάτη",
+      confirmDeleteDoc: "Θέλετε σίγουρα να διαγράψετε αυτό το αρχείο?\n\nΗ διαγραφή είναι οριστική!",
+      missingEmail: "Δεν υπάρχει email για τον πελάτη.",
+    },
+    en: {
+      // statuses
+      saving: "Saving...",
+      saved: "✅ Saved successfully!",
+      saveError: "❌ Error while saving",
+      chooseFile: "Select at least one file.",
+      presign: "Creating upload URL...",
+      uploading: "Uploading files...",
+      finalizing: "Finalizing...",
+      uploadOk: "✅ Upload successful!",
+      uploadFail: "❌ Upload failed",
+      notifyOk: "✅ Notification sent successfully.",
+      notifyFailPrefix: "❌ ",
+      notifyFail: "Error sending notification.",
+      networkFail: "❌ Network error. Please try again.",
+      // confirms / alerts
+      confirmDeleteClient:
+        "Are you sure you want to delete this client?\n\nThis will permanently delete personal data and all documents related to the client!",
+      clientDeleted: "Client deleted successfully!",
+      clientDeleteError: "Error deleting client",
+      confirmDeleteDoc: "Are you sure you want to delete this file?\n\nDeletion is permanent!",
+      missingEmail: "This client has no email address.",
+    },
+  }[locale] || T?.el;
+
   const [activeTab, setActiveTab] = useState("diet");
   const [clientData, setClientData] = useState(client);
   const [groupedDocs, setGroupedDocs] = useState({});
@@ -20,7 +71,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
 
-  const [file, setFile] = useState([]); // treat as array for multi-file UX
+  const [file, setFile] = useState([]); // array for multi-file UX
   const [docType, setDocType] = useState("DIET");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
@@ -73,27 +124,22 @@ export default function ClientDetail({ client, mode = "admin" }) {
 
   const handleDeleteClient = async () => {
     if (
-      !confirm(
-        "Θέλετε σίγουρα να διαγράψετε τον πελάτη?\n\n" +
-        "Πρόκειται να διαγράψετε οριστικά τα προσωπικά στοιχεία " +
-        "καθώς επίσης και όλα τα αρχεία που αφορούν τον πελάτη!"
-      )
-    )
-      return;
+      !confirm(T.confirmDeleteClient)
+    ) return;
 
     try {
       await deleteClient(clientData.id);
-      alert("Ο πελάτης διαγράφηκε επιτυχώς!");
+      alert(T.clientDeleted);
       window.location.assign("/admin");
     } catch (err) {
       console.error(err);
-      alert("Σφάλμα κατά τη διαγραφή πελάτη");
+      alert(T.clientDeleteError);
     }
   };
 
   const handleEditSave = async () => {
     try {
-      setStatus("Αποθήκευση...");
+      setStatus(T.saving);
       const updated = await updateClient(clientData.id, formData);
       setFormData({
         firstName: updated.firstName,
@@ -105,23 +151,23 @@ export default function ClientDetail({ client, mode = "admin" }) {
         ...updated,
         documents: prev.documents,
       }));
-      setStatus("✅ Αποθηκεύτηκε με επιτυχία!");
+      setStatus(T.saved);
       setIsEditing(false);
     } catch (err) {
       console.error(err);
-      setStatus("❌ Σφάλμα στην αποθήκευση");
+      setStatus(T.saveError);
     }
   };
 
-  const handleUpload = async ({ files, meta, perFileMeta  }) => {
+  const handleUpload = async ({ files, meta, perFileMeta }) => {
     if (!files || files.length === 0) {
-      setStatus("Επιλέξτε τουλάχιστον ένα αρχείο.");
+      setStatus(T.chooseFile);
       return;
     }
 
     try {
       setBusy(true);
-      setStatus("Δημιουργία URL μεταφόρτωσης...");
+      setStatus(T.presign);
 
       // 1) presign batch
       const pres = await fetch("/api/documents/presign-batch", {
@@ -136,25 +182,25 @@ export default function ClientDetail({ client, mode = "admin" }) {
             date: perFileMeta[i]?.date || meta.defaultDate,
           })),
         }),
-      }).then(r=>r.json());
+      }).then((r) => r.json());
 
-      if (!pres?.ok) throw new Error(pres?.error || "Αποτυχία presign.");
+      if (!pres?.ok) throw new Error(pres?.error || "presign failed");
 
       // 2) direct uploads
-      setStatus("Ανέβασμα αρχείων...");
+      setStatus(T.uploading);
       await Promise.all(
         pres.items.map((it, idx) =>
           fetch(it.uploadUrl, {
             method: "PUT",
             body: files[idx],
           }).then((r) => {
-            if (!r.ok) throw new Error(`Αποτυχία στο ανέβασμα: ${files[idx].name}`);
+            if (!r.ok) throw new Error(`upload failed: ${files[idx].name}`);
           })
         )
       );
 
       // 3) finalize
-      setStatus("Οριστικοποίηση...");
+      setStatus(T.finalizing);
       const fin = await fetch("/api/documents/finalize-batch", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -166,7 +212,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
         }),
       }).then((r) => r.json());
 
-      if (!fin?.ok) throw new Error(fin?.error || "Αποτυχία οριστικοποίησης.");
+      if (!fin?.ok) throw new Error(fin?.error || "finalize failed");
 
       const newDocs = (fin.docs || []).map((doc) => ({
         ...doc,
@@ -178,11 +224,11 @@ export default function ClientDetail({ client, mode = "admin" }) {
         documents: [...(prev.documents || []), ...newDocs],
       }));
 
-      setStatus("✅ Επιτυχής μεταφόρτωση!");
+      setStatus(T.uploadOk);
       setIsUploadOpen(false);
     } catch (err) {
       console.error(err);
-      setStatus("❌ Σφάλμα στη μεταφόρτωση");
+      setStatus(T.uploadFail);
     } finally {
       setBusy(false);
     }
@@ -203,12 +249,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
   };
 
   const handleDeleteDocument = async (id) => {
-    if (
-      !confirm(
-        "Θέλετε σίγουρα να διαγράψετε αυτό το αρχείο?\n\nΗ διαγραφή είναι οριστική!"
-      )
-    )
-      return;
+    if (!confirm(T.confirmDeleteDoc)) return;
     try {
       await deleteDocument(id);
       setClientData((prev) => ({
@@ -222,7 +263,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
 
   const handleNotifyUser = async () => {
     if (!clientData?.email) {
-      alert("Δεν υπάρχει email για τον πελάτη.");
+      alert(T.missingEmail);
       return;
     }
     try {
@@ -241,17 +282,17 @@ export default function ClientDetail({ client, mode = "admin" }) {
       const data = ct.includes("application/json") ? await res.json() : null;
 
       if (res.ok && data?.ok) {
-        setStatus("✅ Η ειδοποίηση στάλθηκε επιτυχώς.");
-        alert("Η ειδοποίηση στάλθηκε επιτυχώς.");
+        setStatus(T.notifyOk);
+        alert(T.notifyOk);
       } else {
-        const msg = data?.error || "Σφάλμα στην αποστολή ειδοποίησης.";
-        setStatus("❌ " + msg);
+        const msg = data?.error || T.notifyFail;
+        setStatus(T.notifyFailPrefix + msg);
         alert(msg);
       }
     } catch (err) {
       console.error(err);
-      setStatus("❌ Σφάλμα δικτύου. Δοκίμασε ξανά.");
-      alert("Σφάλμα δικτύου. Δοκίμασε ξανά.");
+      setStatus(T.networkFail);
+      alert(T.networkFail.replace("❌ ", ""));
     } finally {
       setNotifyLoading(false);
     }
@@ -303,7 +344,7 @@ export default function ClientDetail({ client, mode = "admin" }) {
             <UploadModal
               isOpen
               onClose={() => setIsUploadOpen(false)}
-              onSubmit={handleUpload}   // expects { files, meta }
+              onSubmit={handleUpload}   // expects { files, meta, perFileMeta }
               file={file}
               setFile={setFile}
               docType={docType}

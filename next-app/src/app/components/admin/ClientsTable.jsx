@@ -1,19 +1,57 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
+import { useLocale } from "@lib/locale";
 
 export default function ClientsTable({ clients }) {
   const router = useRouter();
+  const locale = useLocale();
+
+  const T = {
+    el: {
+      empty: "Δεν βρέθηκαν πελάτες.",
+      lastName: "Επώνυμο",
+      firstName: "Όνομα",
+      email: "Email",
+      phone: "Τηλέφωνο",
+      updatedAt: "Τελευταία τροποποίηση",
+      dtLocale: "el-GR",
+      dash: "—",
+    },
+    en: {
+      empty: "No clients found.",
+      lastName: "Last name",
+      firstName: "First name",
+      email: "Email",
+      phone: "Phone",
+      updatedAt: "Last modified",
+      dtLocale: "en-GB",
+      dash: "—",
+    },
+  }[locale] || {
+    empty: "Δεν βρέθηκαν πελάτες.",
+    lastName: "Επώνυμο",
+    firstName: "Όνομα",
+    email: "Email",
+    phone: "Τηλέφωνο",
+    updatedAt: "Τελευταία τροποποίηση",
+    dtLocale: "el-GR",
+    dash: "—",
+  };
 
   if (!clients?.length) {
-    return <p className="text-gray-500 py-12 text-center">Δεν βρέθηκαν πελάτες.</p>;
+    return <p className="text-gray-500 py-12 text-center">{T.empty}</p>;
   }
 
   const formatDate = (dateString) => {
     if (!dateString) return "-";
     const d = new Date(dateString);
-    return new Intl.DateTimeFormat("el-GR", {
-      day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit",
+    return new Intl.DateTimeFormat(T.dtLocale, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     }).format(d);
   };
 
@@ -22,7 +60,7 @@ export default function ClientsTable({ clients }) {
 
   return (
     <div className="space-y-3">
-      {/* Desktop / Tablet (md+) — custom full-width table with inner container */}
+      {/* Desktop / Tablet (md+) */}
       <div className="hidden md:block bg-white border-b-1 overflow-hidden">
         <table className="w-full table-fixed">
           <thead>
@@ -30,11 +68,11 @@ export default function ClientsTable({ clients }) {
             <th className="p-0" colSpan={5}>
               <div className="max-w-6xl mx-auto px-4">
                 <div className={`${gridCols} py-3`}>
-                  <div className="font-bold text-left">Επώνυμο</div>
-                  <div className="font-bold text-left">Όνομα</div>
-                  <div className="font-bold text-left">Email</div>
-                  <div className="font-bold text-left">Τηλέφωνο</div>
-                  <div className="font-bold text-left">Τελευταία τροποποίηση</div>
+                  <div className="font-bold text-left">{T.lastName}</div>
+                  <div className="font-bold text-left">{T.firstName}</div>
+                  <div className="font-bold text-left">{T.email}</div>
+                  <div className="font-bold text-left">{T.phone}</div>
+                  <div className="font-bold text-left">{T.updatedAt}</div>
                 </div>
               </div>
             </th>
@@ -53,9 +91,13 @@ export default function ClientsTable({ clients }) {
                   <div className={`${gridCols} py-3`}>
                     <div className="truncate font-bold">{c.lastName}</div>
                     <div className="truncate font-bold">{c.firstName}</div>
-                    <div className="truncate" title={c.email}>{c.email}</div>
-                    <div className="truncate">{c.phone || "—"}</div>
-                    <div className="whitespace-nowrap font-bold">{formatDate(c.updatedAt)}</div>
+                    <div className="truncate" title={c.email}>
+                      {c.email}
+                    </div>
+                    <div className="truncate">{c.phone || T.dash}</div>
+                    <div className="whitespace-nowrap font-bold">
+                      {formatDate(c.updatedAt)}
+                    </div>
                   </div>
                 </div>
               </td>
@@ -65,7 +107,7 @@ export default function ClientsTable({ clients }) {
         </table>
       </div>
 
-      {/* Mobile (<md) — card list (centered) */}
+      {/* Mobile (<md) — cards */}
       <ul className="md:hidden space-y-3 px-4">
         {clients.map((c) => (
           <li
@@ -86,7 +128,7 @@ export default function ClientsTable({ clients }) {
               <ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />
             </div>
             <div className="mt-2 flex items-center justify-between text-[0.7rem] text-gray-600">
-              <span className="truncate">{c.phone || "—"}</span>
+              <span className="truncate">{c.phone || T.dash}</span>
               <span className="whitespace-nowrap">{formatDate(c.updatedAt)}</span>
             </div>
           </li>

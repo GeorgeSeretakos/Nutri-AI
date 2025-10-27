@@ -1,4 +1,6 @@
+"use client";
 import { Download, Trash2, FileText, Image as ImageIcon, File } from "lucide-react";
+import { useLocale } from "@lib/locale";
 
 function pickIcon(name = "", mime = "") {
   const n = name?.toLowerCase() || "";
@@ -8,15 +10,45 @@ function pickIcon(name = "", mime = "") {
 }
 
 export default function DocumentItem({ doc, onDownload, onDelete }) {
+  const locale = useLocale(); // "el" | "en"
+  const L = {
+    el: {
+      untitled: "Χωρίς τίτλο",
+      download: "Λήψη",
+      delete: "Διαγραφή",
+      downloadTitle: "Λήψη",
+      deleteTitle: "Διαγραφή",
+      dateLocale: "el-GR",
+      dash: "—",
+    },
+    en: {
+      untitled: "Untitled",
+      download: "Download",
+      delete: "Delete",
+      downloadTitle: "Download",
+      deleteTitle: "Delete",
+      dateLocale: "en-GB",
+      dash: "—",
+    },
+  }[locale] || {
+    untitled: "Χωρίς τίτλο",
+    download: "Λήψη",
+    delete: "Διαγραφή",
+    downloadTitle: "Λήψη",
+    deleteTitle: "Διαγραφή",
+    dateLocale: "el-GR",
+    dash: "—",
+  };
+
   const Icon = pickIcon(doc?.name, doc?.mimeType);
 
   const dateLabel = doc?.date
-    ? new Date(doc.date).toLocaleDateString("el-GR", {
+    ? new Date(doc.date).toLocaleDateString(L.dateLocale, {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
     })
-    : "—";
+    : L.dash;
 
   const canDelete = typeof onDelete === "function";
 
@@ -27,7 +59,7 @@ export default function DocumentItem({ doc, onDownload, onDelete }) {
 
         <div className="min-w-0 flex-1">
           <p className="truncate font-medium text-[0.7rem] sm:text-xs md:text-sm text-zinc-900">
-            {doc?.name || "Χωρίς τίτλο"}
+            {doc?.name || L.untitled}
           </p>
 
           {doc?.description && (
@@ -47,20 +79,22 @@ export default function DocumentItem({ doc, onDownload, onDelete }) {
           <button
             onClick={() => onDownload?.(doc.id)}
             className="inline-flex items-center gap-1.5 px-2 py-1 rounded hover:bg-zinc-100 text-zinc-700 text-[0.7rem] sm:text-xs md:text-sm"
-            title="Λήψη"
+            title={L.downloadTitle}
+            aria-label={L.downloadTitle}
           >
             <Download className="w-4 h-4" />
-            <span className="hidden md:inline">Λήψη</span>
+            <span className="hidden md:inline">{L.download}</span>
           </button>
 
           {canDelete && (
             <button
               onClick={() => onDelete(doc.id)}
               className="inline-flex items-center gap-1.5 px-2 py-1 rounded hover:bg-red-50 text-red-600 text-[0.7rem] sm:text-xs md:text-sm"
-              title="Διαγραφή"
+              title={L.deleteTitle}
+              aria-label={L.deleteTitle}
             >
               <Trash2 className="w-4 h-4" />
-              <span className="hidden md:inline">Διαγραφή</span>
+              <span className="hidden md:inline">{L.delete}</span>
             </button>
           )}
         </div>

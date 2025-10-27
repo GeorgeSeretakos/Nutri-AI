@@ -2,21 +2,29 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-const GENERIC_MSG =
-  "Η συνεδρία σας έληξε ή δεν έχετε πρόσβαση σε αυτή τη σελίδα. Παρακαλώ συνδεθείτε.";
+import { useLocale } from "@lib/locale";
 
 export default function UnauthorizedRedirect({
-exp = null,            // UNIX seconds; if provided, we schedule redirect at exp
-immediate = true,      // if true (default) or no exp -> redirect now
-message = GENERIC_MSG, // generic Greek message
-}) {
+                                               exp = null,            // UNIX seconds; if provided, schedule redirect at exp
+                                               immediate = true,      // if true (default) or no exp -> redirect now
+                                               message,               // optional override; if omitted we use a locale default
+                                               redirectTo = "/login", // where to send the user
+                                             }) {
   const router = useRouter();
+  const locale = useLocale();
+
+  const DEFAULTS = {
+    el: "Η συνεδρία σας έληξε ή δεν έχετε πρόσβαση σε αυτή τη σελίδα. Παρακαλώ συνδεθείτε.",
+    en: "Your session expired or you don’t have access to this page. Please sign in.",
+  };
+
+  // Use explicit message if provided; otherwise pick by locale (fallback: el)
+  const notice = typeof message === "string" ? message : (DEFAULTS[locale] || DEFAULTS.el);
 
   useEffect(() => {
     const redirect = () => {
-      try { sessionStorage.setItem("authNotice", message); } catch {}
-      router.replace("/login");
+      try { sessionStorage.setItem("authNotice", notice); } catch {}
+      router.replace(redirectTo);
     };
 
     // Immediate redirect (unauthorized case)
@@ -41,7 +49,7 @@ message = GENERIC_MSG, // generic Greek message
       window.removeEventListener("focus", onWake);
       document.removeEventListener("visibilitychange", onWake);
     };
-  }, [exp, immediate, message, router]);
+  }, [exp, immediate, notice, router, redirectTo]);
 
   return null;
 }

@@ -1,13 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import ServiceCard from "./ServiceCard";
+import { useLocale } from "@lib/locale";
 
 export default function ServicesSection({
                                           title = "",
                                           paragraphs = [],
                                           ctaText = "",
                                           ctaHref = "",
-                                          services = []
+                                          services = [],
                                         }) {
+  const locale = useLocale();
+  const isEn = locale === "en";
+
+  // Normalize bilingual service items to the shape ServiceCard expects
+  const normalized = services.map((s) => ({
+    ...s,
+    title: isEn ? (s.title_en || s.title_el || s.title) : (s.title_el || s.title_en || s.title),
+    description: isEn
+      ? (s.description_en || s.description_el || s.description)
+      : (s.description_el || s.description_en || s.description),
+  }));
+
   return (
     <section className="w-full py-12">
       <div className="max-w-6xl mx-auto px-4">
@@ -19,7 +34,7 @@ export default function ServicesSection({
           <div className="max-w-3xl mb-8 space-y-4">
             {paragraphs.map((p, i) =>
               typeof p === "string" && /<[^>]+>/.test(p) ? (
-                <p key={i} dangerouslySetInnerHTML={{__html: p}}/>
+                <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
               ) : (
                 <p key={i} className="text-gray-700">
                   {p}
@@ -42,9 +57,9 @@ export default function ServicesSection({
         <div className="flex flex-col items-center gap-8">
           {/* Top row (2 cards centered) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.slice(0, 2).map((service) => (
+            {normalized.slice(0, 2).map((service) => (
               <ServiceCard
-                key={service.title}
+                key={`${service.iconSrc}-${service.title}`}
                 iconSrc={service.iconSrc}
                 iconAlt={service.iconAlt}
                 title={service.title}
@@ -55,9 +70,9 @@ export default function ServicesSection({
 
           {/* Bottom row (3 cards centered) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.slice(2).map((service) => (
+            {normalized.slice(2).map((service) => (
               <ServiceCard
-                key={service.title}
+                key={`${service.iconSrc}-${service.title}`}
                 iconSrc={service.iconSrc}
                 iconAlt={service.iconAlt}
                 title={service.title}
@@ -66,8 +81,6 @@ export default function ServicesSection({
             ))}
           </div>
         </div>
-
-
       </div>
     </section>
   );
