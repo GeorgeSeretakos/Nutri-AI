@@ -384,7 +384,7 @@ const posts = [
   {
     slug: "juicy-banana-bread",
     title: "Ζουμερό Banana Bread",
-    image: "/images/blog/6.png",
+    image: "/images/blog/6.jpg",
     category: "recipes",
     contentHtml: `
     <section>
