@@ -28,6 +28,8 @@ const logos = [
   "/images/companies/lambda.jpg",
   "/images/companies/hellenic-cables.jpg",
   "/images/companies/solinourgeia-korinthou.jpg",
+  "/images/companies/plenitude.jpg",
+  "/images/companies/alpha_bank.jpg"
 ];
 
 export default function CompaniesCarousel() {

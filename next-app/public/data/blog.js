@@ -143,7 +143,7 @@ const posts = [
   {
     slug: "tiramisu-overnight-oats",
     title: "Tiramisu Overnight Oats",
-    image: "/images/blog/3.webp",
+    image: "/images/blog/3.jpg",
     category: "recipes",
     contentHtml: `
     <section>
@@ -214,7 +214,7 @@ const posts = [
   {
     slug: "shrimp-bulgur-salad",
     title: "Σαλάτα με Γαρίδες, Πλιγούρι και Dressing Ταχινιού",
-    image: "/images/blog/4.webp",
+    image: "/images/blog/4.jpg",
     category: "recipes",
     contentHtml: `
     <section>
@@ -293,7 +293,7 @@ const posts = [
   {
     slug: "homemade-electrolyte-water",
     title: "Αρωματισμένο Νερό – Σπιτικός Ηλεκτρολύτης",
-    image: "/images/blog/5.png",
+    image: "/images/blog/5.jpg",
     category: "recipes",
     contentHtml: `
     <section>
@@ -515,7 +515,7 @@ const posts = [
   {
     slug: "peanut-butter-banana-rolls",
     title: "Ρολάκια φυστικοβούτυρο και μπανάνα",
-    image: "/images/blog/8.png",
+    image: "/images/blog/8.jpg",
     category: "recipes",
     contentHtml: `
     <section>
@@ -818,79 +818,6 @@ const posts = [
     instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
   },
 
-  {
-    slug: "chicken-spinach-mozzarella",
-    title: "Κοτόπουλο με Σπανάκι & Μοτσαρέλα",
-    image: "/images/blog/11.png",
-    category: "recipes",
-    contentHtml: `
-    <section>
-      <p><strong>Μερίδες:</strong> 4 &nbsp; <strong>Απόδοση:</strong> 4</p>
-      <p>
-        <strong>Συνολικός χρόνος:</strong> 45’,
-        <strong>Δυσκολία:</strong> Μέτρια,
-        <strong>Θερμίδες/μερίδα:</strong> 280 kcal,
-        <strong>Γεύμα:</strong> Μεσημεριανό / Βραδινό
-      </p>
-      <p>Δείτε την αρχική δημοσίευση εδώ:
-        <a href="https://www.emea.jnjwithme.com/en/healthy-lifestyle/recipes/chicken-with-spinach-and-mozzarella" target="_blank" rel="noopener">Chicken with spinach & mozzarella</a>.
-      </p>
-    </section>
-
-    <h3>Υλικά</h3>
-    <ul>
-      <li>600 γρ. (4) φιλέτα στήθους κοτόπουλου</li>
-      <li>300–400 γρ. σπανάκι — ιδανικά φρέσκο (400 γρ.) ή κατεψυγμένο (300 γρ.)</li>
-      <li>125 γρ. μοτσαρέλα χαμηλών λιπαρών</li>
-      <li>1 μέτριο αυγό</li>
-      <li>40–50 γρ. τριμμένη φρυγανιά</li>
-    </ul>
-
-    <h3>Εκτέλεση</h3>
-    <ol>
-      <li>Βράζετε το σπανάκι για 2 λεπτά σε αλατισμένο νερό. Αν χρησιμοποιείτε κατεψυγμένο ή ελαφρώς προμαγειρεμένο σπανάκι, τοποθετήστε το σε ζεστό νερό για 5 λεπτά.</li>
-      <li>Στεγνώνετε καλά το σπανάκι με χαρτί κουζίνας και το ψιλοκόβετε.</li>
-      <li>Πλένετε κάθε φιλέτο κοτόπουλου, το στεγνώνετε και κάνετε μια μικρή τομή.</li>
-      <li>Κόβετε τη μοτσαρέλα σε λεπτές φέτες και γεμίζετε το φιλέτο με μοτσαρέλα και σπανάκι.</li>
-      <li>Σπάτε το αυγό σε ένα μπολ και το χτυπάτε. Βουτάτε τα φιλέτα πρώτα στο αυγό και μετά στη φρυγανιά και τα τοποθετείτε σε ταψί.</li>
-      <li>Ψήνετε στους 175°C για 25 λεπτά.</li>
-    </ol>
-
-    <h3>Διατροφικά οφέλη βασικών συστατικών</h3>
-
-    <h4>Σπανάκι</h4>
-    <ul>
-      <li>Πλούσιο σε <strong>καροτενοειδή</strong> (προβιταμίνη Α).</li>
-      <li><strong>Βιταμίνη C:</strong> ισχυρό αντιοξειδωτικό που προάγει την υγεία του δέρματος και του ανοσοποιητικού συστήματος.</li>
-      <li><strong>Βιταμίνη K1:</strong> ένα μόνο φύλλο σπανακιού μπορεί να καλύψει πάνω από το μισό της ημερήσιας ανάγκης.</li>
-      <li><strong>Φολικό οξύ (Β9):</strong> σημαντικό για την εγκυμοσύνη, τη φυσιολογική λειτουργία των κυττάρων και την ανάπτυξη των ιστών.</li>
-      <li><strong>Σίδηρος:</strong> απαραίτητο μέταλλο για την παραγωγή αιμοσφαιρίνης που μεταφέρει οξυγόνο στους ιστούς.</li>
-      <li><strong>Ασβέστιο:</strong> απαραίτητο για την υγεία των οστών και τη λειτουργία του νευρικού συστήματος, της καρδιάς και των μυών.</li>
-    </ul>
-
-    <h4>Κοτόπουλο</h4>
-    <ul>
-      <li><strong>Άπαχη πρωτεΐνη:</strong> εξαιρετική πηγή αμινοξέων για τη δόμηση των μυών, με χαμηλή περιεκτικότητα σε λιπαρά.</li>
-      <li>Η αυξημένη πρόσληψη πρωτεΐνης μπορεί να βοηθήσει στη διατήρηση της <strong>οστικής πυκνότητας</strong> και στην ενίσχυση της μυϊκής και οστικής υγείας.</li>
-      <li><strong>Κορεσμός & διαχείριση βάρους:</strong> τα γεύματα πλούσια σε πρωτεΐνη βοηθούν να νιώθουμε χορτάτοι με λιγότερη τροφή και συμβάλλουν στην καρδιαγγειακή υγεία.</li>
-      <li><strong>Ψυχολογική ευεξία:</strong> περιέχει τρυπτοφάνη, αμινοξύ που σχετίζεται με αυξημένα επίπεδα σεροτονίνης (η «ορμόνη της χαράς»).</li>
-    </ul>
-
-    <h3>Διατροφικός πίνακας (ανά μερίδα)</h3>
-    <table>
-      <tbody>
-        <tr><td><strong>Θερμίδες</strong></td><td>280 kcal</td></tr>
-        <tr><td><strong>Λιπαρά</strong></td><td>5,3 g</td></tr>
-        <tr><td><strong>Υδατάνθρακες</strong></td><td>9,3 g</td></tr>
-        <tr><td><strong>Φυτικές ίνες</strong></td><td>2,3 g</td></tr>
-        <tr><td><strong>Πρωτεΐνη</strong></td><td>44,4 g</td></tr>
-      </tbody>
-    </table>
-  `,
-    instagramPostUrl: "",
-    instagramProfileUrl: ""
-  },
-
 
 
 
@@ -980,7 +907,7 @@ const posts = [
   {
     slug: "eyexia-me-ton-tetrapodo-filo-mou",
     title: "Κατακτώντας την ευεξία μαζί με τον τετράποδο φίλο μου",
-    image: "/images/media/articles/6.png",
+    image: "/images/media/articles/6.jpg",
     category: "articles",
     contentHtml: `
     <p>Όταν μου πρότειναν να γράψω σε περιοδικό για τα ζώα, σκέφτηκα πόσο τυχερή είμαι που έχω κι εγώ ένα τέτοιο πλάσμα δίπλα μου — και πόσο σημαντική είναι αυτή η εμπειρία ζωής. Συνήθως μιλάμε για το τι κάνουμε εμείς για το ζώο: φροντίδα, τροφή, κτηνίατρος. Σπάνια όμως ρωτάμε: <strong>τι κάνει εκείνο για εμάς;</strong></p>
