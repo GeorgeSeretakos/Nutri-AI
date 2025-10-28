@@ -1,10 +1,23 @@
+// app/blog/page.jsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useLocale } from "@lib/locale";
 import posts from "../../../public/data/blog";
 import BlogCard from "../components/blog/BlogCard";
 import Navbar from "../components/Navbar";
+
+function localizePost(post, locale) {
+  const t = post?.M?.[locale] ?? {};
+  return {
+    ...post,
+    // Prefer localized fields when available
+    title: t.title ?? post.title,
+    contentHtml: t.contentHtml ?? post.contentHtml,
+    content: t.content ?? post.content,
+    externalUrl: t.externalUrl ?? post.externalUrl,
+  };
+}
 
 export default function BlogPage() {
   const [category, setCategory] = useState("recipes");
@@ -28,7 +41,13 @@ export default function BlogPage() {
   };
   const T = M[locale] || M.el;
 
-  const filteredPosts = posts.filter((p) => p.category === category);
+  const filteredPosts = useMemo(
+    () =>
+      posts
+        .filter((p) => p.category === category)
+        .map((p) => localizePost(p, locale)),
+    [category, locale]
+  );
 
   return (
     <main className="mt-16">
@@ -46,21 +65,28 @@ export default function BlogPage() {
             overflow-x-auto
             scrollbar-hide
           "
+          role="tablist"
+          aria-label="Blog categories"
         >
-          {T.tabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => setCategory(tab.value)}
-              className={`whitespace-nowrap px-3 py-1 border-b-2 transition cursor-pointer ${
-                category === tab.value
-                  ? "border-yellow-400 text-white font-medium"
-                  : "border-transparent hover:border-yellow-400 text-white"
-              }`}
-              aria-current={category === tab.value ? "page" : undefined}
-            >
-              {tab.label}
-            </button>
-          ))}
+          {T.tabs.map((tab) => {
+            const selected = category === tab.value;
+            return (
+              <button
+                key={tab.value}
+                onClick={() => setCategory(tab.value)}
+                className={`whitespace-nowrap px-3 py-1 border-b-2 transition cursor-pointer ${
+                  selected
+                    ? "border-yellow-400 text-white font-medium"
+                    : "border-transparent hover:border-yellow-400 text-white"
+                }`}
+                aria-current={selected ? "page" : undefined}
+                aria-selected={selected}
+                role="tab"
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </nav>
       </div>
 

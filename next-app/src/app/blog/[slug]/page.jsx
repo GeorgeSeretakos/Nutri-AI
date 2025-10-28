@@ -3,27 +3,46 @@ import posts from "../../../../public/data/blog";
 import Link from "next/link";
 import { cookies } from "next/headers";
 
-export default function BlogSlugPage({ params }) {
-  const { slug } = params;
-  const post = posts.find((p) => p.slug === slug);
-
+function getLocale() {
   const cookieLocale = cookies().get("locale")?.value;
-  const locale = cookieLocale === "en" || cookieLocale === "el" ? cookieLocale : "el";
+  return cookieLocale === "en" || cookieLocale === "el" ? cookieLocale : "el";
+}
+
+function localizePost(post, locale) {
+  const t = post?.M?.[locale] ?? {};
+  return {
+    ...post,
+    title: t.title ?? post.title,
+    contentHtml: t.contentHtml ?? post.contentHtml,
+    content: t.content ?? post.content,
+    externalUrl: t.externalUrl ?? post.externalUrl,
+  };
+}
+
+export default function BlogSlugPage({ params }) {
+  const locale = getLocale();
+  const { slug } = params;
+  const basePost = posts.find((p) => p.slug === slug);
+  const post = basePost ? localizePost(basePost, locale) : null;
 
   const M = {
     el: {
       notFoundTitle: "Το άρθρο δεν βρέθηκε",
       notFoundDesc: "Αυτό το περιεχόμενο είναι διαθέσιμο μόνο ως PDF.",
-      instaTagline: "Συνεργατικό περιεχόμενο από την Anna — Annalicious Healthy Bites",
-      instaPostCta: "Δες τη δημοσίευση της @annalicious_healthybites για την παραπάνω συνταγή!",
+      instaTagline:
+        "Συνεργατικό περιεχόμενο από την Anna — Annalicious Healthy Bites",
+      instaPostCta:
+        "Δες τη δημοσίευση της @annalicious_healthybites για την παραπάνω συνταγή!",
       instaProfileCta: "Δες το προφίλ της Άννας στο Instagram",
       seeMore: "Δες περισσότερα →",
     },
     en: {
       notFoundTitle: "Post not found",
       notFoundDesc: "This content is available only as a PDF.",
-      instaTagline: "Collaborative content by Anna — Annalicious Healthy Bites",
-      instaPostCta: "See @annalicious_healthybites’ post for the recipe above!",
+      instaTagline:
+        "Collaborative content by Anna — Annalicious Healthy Bites",
+      instaPostCta:
+        "See @annalicious_healthybites’ post for the recipe above!",
       instaProfileCta: "Visit Anna’s Instagram profile",
       seeMore: "See more →",
     },
@@ -58,7 +77,10 @@ export default function BlogSlugPage({ params }) {
       )}
 
       {post.contentHtml ? (
-        <div className="content blog" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+        <div
+          className="content blog"
+          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+        />
       ) : (
         post.content?.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)
       )}
