@@ -86,10 +86,10 @@ const M = {
   },
 };
 
-export default function Home() {
-  const cookieStore = cookies();
+export default async function Home() {             // <- async
+  const cookieStore = await cookies();             // <- await
   const cookieLocale = cookieStore.get("locale")?.value;
-  const locale = cookieLocale === "en" || cookieLocale === "el" ? cookieLocale : "el"; // ✅ server-safe
+  const locale = (cookieLocale === "en" || cookieLocale === "el") ? cookieLocale : "el";
   const L = M[locale];
 
   return (
@@ -97,7 +97,6 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <PhilosophySection />
-
       <AboutSection
         title={L.about1.title}
         image="/images/tonia/5.webp"
@@ -107,7 +106,6 @@ export default function Home() {
         ctaText={L.about1.cta}
         ctaLink={L.about1.ctaLink}
       />
-
       <ServicesSection
         title={L.services.title}
         paragraphs={L.services.paragraphs}
@@ -115,7 +113,6 @@ export default function Home() {
         ctaText={L.services.cta}
         ctaHref={L.services.href}
       />
-
       <AboutSection
         title={L.about2.title}
         image="/images/general/laptop.webp"
@@ -126,12 +123,11 @@ export default function Home() {
         ctaText={L.about2.cta}
         ctaLink={L.about2.ctaLink}
       />
-
       <QuoteSection />
       <OfficePreviewSection />
       <TestimonialsCarousel />
       <StatsSection />
-      <BlogPreviewSection />
+      <BlogPreviewSection />    {/* ok */}
       <CompaniesCarousel />
       <Footer />
     </main>
