@@ -1023,7 +1023,7 @@ const posts = [
       <p>
         <strong>Συνολικός χρόνος:</strong> 40’, 
         <strong>Δυσκολία:</strong> Εύκολη, 
-        <strong>Θερμίδες ανά μερίδα:</strong> 111,6 Kcal, 
+        <strong>Θερμίδες ανά μερίδα:</strong> 112 Kcal, 
         <strong>Γεύμα:</strong> Σνακ (Ενέργεια)
       </p>
       <p><strong>Διατροφικό προφίλ:</strong> Υγιής Γήρανση / Υγιές Ανοσοποιητικό / Χωρίς αυγό / Χωρίς σόγια</p>
@@ -1118,7 +1118,7 @@ const posts = [
       <p>
         <strong>Total time:</strong> 40’, 
         <strong>Difficulty:</strong> Easy, 
-        <strong>Calories per serving:</strong> 111.6 kcal, 
+        <strong>Calories per serving:</strong> 112 kcal, 
         <strong>Meal:</strong> Snack (Energy)
       </p>
       <p><strong>Nutritional profile:</strong> Healthy Aging / Strong Immune System / Egg-free / Soy-free</p>
@@ -1496,6 +1496,7 @@ const posts = [
         </tr>
       </thead>
       <tbody>
+        <tr><td>Θερμίδες</td><td>290 kcal</td></tr>
         <tr><td>Υδατάνθρακες</td><td>2,10 g</td></tr>
         <tr><td>Φυτικές ίνες</td><td>3,5 g</td></tr>
         <tr><td>Πρωτεΐνη</td><td>16 g</td></tr>
@@ -1527,8 +1528,6 @@ const posts = [
     <h3>Tip</h3>
     <p>Μανιτάρια: ο πιο νόστιμος τρόπος να "θωρακίσεις" τον οργανισμό σου! Χαμηλά σε θερμίδες (95 kcal/100 γρ), πλούσια σε πρωτεΐνες, φυτικές ίνες, αντιοξειδωτικά και βιταμίνη D — ένα φυσικό superfood που ενισχύει το ανοσοποιητικό και προστατεύει τα κύτταρα από τη φθορά. Ποιος είπε ότι τα superfoods δεν είναι gourmet;</p>
       `,
-        instagramPostUrl: "https://www.instagram.com/p/DP-_KPWjLvV/",
-        instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
       },
       en: {
         title: "High-Protein Mushroom Pie",
@@ -1581,6 +1580,7 @@ const posts = [
         </tr>
       </thead>
       <tbody>
+        <tr><td>Calories</td><td>290 kcal</td></tr>
         <tr><td>Carbohydrates</td><td>2.10 g</td></tr>
         <tr><td>Fiber</td><td>3.5 g</td></tr>
         <tr><td>Protein</td><td>16 g</td></tr>
@@ -1612,10 +1612,10 @@ const posts = [
     <h3>Tip</h3>
     <p>Mushrooms: the tastiest way to “shield” your body! Low-calorie (95 kcal/100 g), rich in protein, fiber, antioxidants, and vitamin D — a natural superfood that supports immunity and protects cells from damage. Who said superfoods can’t be gourmet?</p>
       `,
-        instagramPostUrl: "https://www.instagram.com/p/DP-_KPWjLvV/",
-        instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
       },
     },
+    instagramPostUrl: "https://www.instagram.com/p/DP-_KPWjLvV/",
+    instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
   },
 
   {
@@ -1739,8 +1739,6 @@ const posts = [
     </ul>
     <p>Μελέτες έχουν συσχετίσει την επαρκή πρόσληψη από β-καροτένιο με τη βελτιωμένη γνωστική λειτουργία.<br/>Μην πετάξετε τους σπόρους της! Αποτελούν πολύ καλή πηγή πρωτεΐνης, ψευδαργύρου, φωσφόρου και σιδήρου!</p>
       `,
-        instagramPostUrl: "https://www.instagram.com/p/DQRMsCejEBZ/",
-        instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
       },
       en: {
         title: "Pumpkin Cupcakes",
@@ -1858,10 +1856,10 @@ const posts = [
     </ul>
     <p>Adequate β-carotene intake has been linked with improved cognitive function.<br/>Don’t toss the seeds! They’re a great source of protein, zinc, phosphorus, and iron.</p>
       `,
-        instagramPostUrl: "https://www.instagram.com/p/DQRMsCejEBZ/",
-        instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
       },
     },
+    instagramPostUrl: "https://www.instagram.com/p/DQRMsCejEBZ/",
+    instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
   },
 
 
