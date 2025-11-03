@@ -1863,6 +1863,169 @@ const posts = [
   },
 
 
+  {
+    slug: "homemade-wafer-bars",
+    image: "/images/blog/13.jpg",
+    category: "recipes",
+    M: {
+      el: {
+        title: "Σπιτικές γκοφρέτες",
+        contentHtml: `
+      <h3>Σπιτικές γκοφρέτες</h3>
+
+      <p><strong>Μερίδες:</strong> 8 &nbsp; <strong>Απόδοση:</strong> 8</p>
+      <p>
+        <strong style="color:#e67e22;">Συνολικός χρόνος:</strong> 20’, 
+        <strong style="color:#e67e22;">Δυσκολία:</strong> Εύκολη, 
+        <strong style="color:#e67e22;">Θερμίδες ανά μερίδα :</strong> 253Kcal, 
+        <strong>Γεύμα:</strong> Σνακ (Φυτικές ίνες, ενέργεια)
+      </p>
+      <p><strong>Διατροφικό προφίλ:</strong> φυτικές ίνες/χωρίς ζάχαρη</p>
+
+      <h3>Υλικά:</h3>
+      <ul>
+        <li>12 φρυγανιές ολικής Thin wasa</li>
+        <li>4κ.σ. φουντουκοβούτυρο</li>
+        <li>Πάστα από 4 βασιλικούς χουρμάδες</li>
+        <li>1κ.σ. κακάο ωμό</li>
+        <li>170γρ κουβερτούρα υγείας με στέβια</li>
+        <li>1κ.σ. βανίλια</li>
+      </ul>
+
+      <h3>Εκτέλεση:</h3>
+      <ul>
+        <li>Ανακατεύω τα υλικά μου και αλείφω την μια επιφάνεια κάθε φρυγανιάς ( κάθε γκοφρέτα 3 φρυγανιές άρα 4 σύνολο)</li>
+        <li>Περιχύνω με κουβερτούρα και αφήνω να παγώσει από τη μια πλευρά</li>
+        <li>Περιχύνω και από την άλλη και γύρω γύρω!</li>
+        <li>Αν θέλω προαιρετικά πασπαλίζω και με ελάχιστη γάλακτος για το εφέ!</li>
+      </ul>
+
+      <h3 style="color:#2b6cb0;">Διατροφικός πίνακας</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Θρεπτικά συστατικά</th>
+            <th>Ανά μερίδα</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Θερμίδες</td><td>253kcal</td></tr>
+          <tr><td>Υδατάνθρακες</td><td>33,7g</td></tr>
+          <tr><td>Πρωτεΐνη</td><td>5,6g</td></tr>
+          <tr><td>Φυτικές Ίνες</td><td>7,2g</td></tr>
+          <tr><td>Λιπαρά</td><td>11,8g</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:#2b6cb0;">Διατροφικά οφέλη βασικών συστατικών</h3>
+
+      <h4 style="color:#3a6629;">Φουντουκοβούτυρο</h4>
+      <p>Το φουντουκοβούτυρο είναι εξαιρετική πηγή:</p>
+      <ul>
+        <li><strong>Βιταμίνης Ε:</strong> Ένα ισχυρό αντιοξειδωτικό.</li>
+        <li><strong>Μαγγανίου:</strong> Απαραίτητο για το μεταβολισμό και την υγεία των οστών.</li>
+        <li><strong>Μαγνησίου:</strong> Συμβάλλει στη λειτουργία των μυών και του νευρικού συστήματος.</li>
+        <li><strong>Χαλκού</strong> και <strong>Σιδήρου.</strong></li>
+      </ul>
+
+      <h4 style="color:#b8860b;">Χουρμάς</h4>
+      <p>Οι χουρμάδες είναι αποξηραμένοι καρποί με υψηλή θρεπτική αξία, εξαιρετική πηγή φυσικής γλυκύτητας και ενέργειας. Είναι πλούσιοι σε υδατάνθρακες (κυρίως φυσικά σάκχαρα) και φυτικές ίνες.</p>
+      <ul>
+        <li><strong>Σάκχαρα:</strong> Το μεγαλύτερο μέρος των υδατανθράκων είναι <strong>φυσικά σάκχαρα</strong> (φρουκτόζη και γλυκόζη). Δεν έχουν πρόσθετη ζάχαρη, αλλά η περιεκτικότητά τους σε φυσικά σάκχαρα είναι πολύ υψηλή.</li>
+        <li><strong>Φυτικές Ίνες:</strong> Αποτελούν εξαιρετική πηγή φυτικών ινών, οι οποίες συμβάλλουν στην υγεία του πεπτικού συστήματος.</li>
+        <li><strong>Κάλιο:</strong> Είναι ιδιαίτερα πλούσιοι σε κάλιο, ένα σημαντικό ηλεκτρολύτη.</li>
+        <li><strong>Ποσότητα Μερίδας:</strong> Ένας μέτριος έως μεγάλος χουρμάς (π.χ. Medjool) ζυγίζει συνήθως <strong>18 - 24$ γραμμάρια.</strong> Ένας μικρότερος χουρμάς (π.χ. Deglet Noor) μπορεί να ζυγίζει περίπου <strong>7-10$ γραμμάρια.</strong></li>
+        <li>Λόγω της υψηλής τους θερμιδικής και λιπαρής αξίας, συνιστάται η κατανάλωσή τους με μέτρο, με μια τυπική μερίδα να είναι περίπου <strong>30 γραμμάρια</strong> (περίπου 200 θερμίδες).</li>
+      </ul>
+
+      <h3>Tip</h3>
+      <h4>Χουρμάς</h4>
+      <p>Περιέχει εξαιρετικά υψηλή ποσότητα <strong>καλίου</strong>, ένα μέταλλο που συμβάλλει στη ρύθμιση της αρτηριακής πίεσης και υποστηρίζει την καρδιαγγειακή υγεία. Είναι πλούσιος σε αντιοξειδωτικά όπως μαγνήσιο, σίδηρο και χαλκό. Προσοχή στην ποσότητα γιατί είναι θερμιδική βόμβα σε μεγάλες ποσότητες όχι πάνω από 2-3 την ημέρα.</p>
+      `
+      },
+      en: {
+        title: "Homemade Wafer Bars",
+        contentHtml: `
+      <h3>Homemade Wafer Bars</h3>
+
+      <p><strong>Servings:</strong> 8 &nbsp; <strong>Yield:</strong> 8</p>
+      <p>
+        <strong style="color:#e67e22;">Total time:</strong> 20’, 
+        <strong style="color:#e67e22;">Difficulty:</strong> Easy, 
+        <strong style="color:#e67e22;">Calories per serving:</strong> 253Kcal, 
+        <strong>Meal:</strong> Snack (Fiber, energy)
+      </p>
+      <p><strong>Nutritional profile:</strong> fiber / sugar-free</p>
+
+      <h3>Ingredients:</h3>
+      <ul>
+        <li>12 whole-grain Thin Wasa crackers</li>
+        <li>4 tbsp hazelnut butter</li>
+        <li>Paste from 4 Medjool dates</li>
+        <li>1 tbsp raw cocoa</li>
+        <li>170g dark chocolate with stevia</li>
+        <li>1 tbsp vanilla</li>
+      </ul>
+
+      <h3>Method:</h3>
+      <ul>
+        <li>Mix the ingredients and spread on one side of each cracker (each wafer has 3 crackers, total 4 wafers).</li>
+        <li>Pour over the chocolate coating and let it cool on one side.</li>
+        <li>Then pour over the other side and around the edges!</li>
+        <li>Optionally, sprinkle lightly with milk chocolate for a decorative effect!</li>
+      </ul>
+
+      <h3 style="color:#2b6cb0;">Nutritional Table</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nutrients</th>
+            <th>Per serving</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Calories</td><td>253kcal</td></tr>
+          <tr><td>Carbohydrates</td><td>33.7g</td></tr>
+          <tr><td>Protein</td><td>5.6g</td></tr>
+          <tr><td>Dietary Fiber</td><td>7.2g</td></tr>
+          <tr><td>Fat</td><td>11.8g</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:#2b6cb0;">Nutritional Benefits of Key Ingredients</h3>
+
+      <h4 style="color:#3a6629;">Hazelnut Butter</h4>
+      <p>Hazelnut butter is an excellent source of:</p>
+      <ul>
+        <li><strong>Vitamin E:</strong> A strong antioxidant.</li>
+        <li><strong>Manganese:</strong> Essential for metabolism and bone health.</li>
+        <li><strong>Magnesium:</strong> Supports muscle and nervous system function.</li>
+        <li><strong>Copper</strong> and <strong>Iron.</strong></li>
+      </ul>
+
+      <h4 style="color:#b8860b;">Dates</h4>
+      <p>Dates are dried fruits with high nutritional value, an excellent source of natural sweetness and energy. They are rich in carbohydrates (mainly natural sugars) and dietary fiber.</p>
+      <ul>
+        <li><strong>Sugars:</strong> Most of their carbohydrates come from <strong>natural sugars</strong> (fructose and glucose). They contain no added sugar, but their natural sugar content is very high.</li>
+        <li><strong>Fiber:</strong> An excellent source of dietary fiber that supports digestive health.</li>
+        <li><strong>Potassium:</strong> Especially rich in potassium, an important electrolyte.</li>
+        <li><strong>Serving Size:</strong> A medium to large date (e.g. Medjool) typically weighs <strong>18–24g</strong>. A smaller date (e.g. Deglet Noor) weighs about <strong>7–10g</strong>.</li>
+        <li>Due to their high calorie and sugar content, it’s recommended to consume them in moderation — a typical serving is about <strong>30g</strong> (≈200 calories).</li>
+      </ul>
+
+      <h3>Tip</h3>
+      <h4>Dates</h4>
+      <p>They contain a very high amount of <strong>potassium</strong>, a mineral that helps regulate blood pressure and supports cardiovascular health. They are also rich in antioxidants such as magnesium, iron, and copper. Consume in moderation — no more than 2–3 per day, as they’re quite calorie-dense!</p>
+      `
+      }
+    },
+    instagramPostUrl: "https://www.instagram.com/p/DQjMgojDFeN/",
+    instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
+  },
+
+
 
 
 
