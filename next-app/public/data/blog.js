@@ -2026,6 +2026,246 @@ const posts = [
   },
 
 
+  {
+    slug: "burger-glykopatatas",
+    image: "/images/blog/14.jpg",
+    category: "recipes",
+    M: {
+      el: {
+        title: "Burger γλυκοπατάτας",
+        contentHtml: `
+      <h3>Burger γλυκοπατάτας</h3>
+
+      <p><strong>Μερίδες:</strong> 4 &nbsp; <strong>Απόδοση:</strong> 4</p>
+      <p>
+        <strong style="color:#e67e22;">Συνολικός χρόνος:</strong> 40’, 
+        <strong style="color:#e67e22;">Δυσκολία:</strong> Εύκολη, 
+        <strong style="color:#e67e22;">Θερμίδες ανά μερίδα:</strong> 455Kcal, 
+        <strong>Γεύμα:</strong> Μεσημεριανό/Βραδινό (Υψηλή πρωτεΐνη)
+      </p>
+      <p><strong>Διατροφικό προφίλ:</strong> Υψηλή πρωτεΐνη</p>
+
+      <h3>Υλικά:</h3>
+      <h4>Ψωμάκια γλυκοπατάτας (6 τεμάχια)</h4>
+      <ul>
+        <li>160γρ γλυκοπατάτα τριμμένη</li>
+        <li>1 αυγό</li>
+        <li>70γρ τυρί κίτρινο light</li>
+        <li>2 κ.σ. αλεύρι ολικής άλεσης</li>
+        <li>Αλάτι, πιπέρι, πάπρικα γλυκιά, 1 κ.γ. ελαιόλαδο</li>
+      </ul>
+      <p><em>Ψήνω στο τηγάνι ή air fryer για 15’ στους 200°C.</em></p>
+
+      <h4>4 burger κοτόπουλου</h4>
+      <ul>
+        <li>500γρ κιμά κοτόπουλου</li>
+        <li>1 κρεμμύδι ξερό</li>
+        <li>1 μικρή ντομάτα τριμμένη</li>
+        <li>1 κ.σ. ελαιόλαδο</li>
+        <li>1 αυγό</li>
+        <li>1 κ.γ. ξύδι</li>
+        <li>1 κ.γ. μουστάρδα</li>
+        <li>1 κ.γ. ρίγανη</li>
+        <li>4 κ.σ. βρώμη</li>
+        <li>1 κ.σ. ψιλοκομμένο μαϊντανό</li>
+        <li>Αλάτι, πιπέρι</li>
+      </ul>
+
+      <h4>Sauce μουστάρδας</h4>
+      <ul>
+        <li>2 κ.σ. γιαούρτι 2%</li>
+        <li>2 κ.σ. μαγιονέζα light</li>
+        <li>1 κ.σ. μουστάρδα απαλή</li>
+        <li>2 κ.γ. αγαύη</li>
+        <li>1/4 κ.γ. ξίδι λευκό</li>
+        <li>Αλάτι, πιπέρι, πάπρικα γλυκιά</li>
+      </ul>
+
+      <h4>Για τη σύνθεση:</h4>
+      <ul>
+        <li>Μαρούλι (4 φύλλα)</li>
+        <li>2–3 αγγουράκια τουρσί</li>
+      </ul>
+
+      <h3>Εκτέλεση:</h3>
+      <ul>
+        <li>Ψήνω τα ψωμάκια γλυκοπατάτας για 15’ στο τηγάνι ή air fryer στους 200°C.</li>
+        <li>Ψήνω τα burger κοτόπουλου, αφού τα έχω πατήσει να γίνουν επίπεδα, για 15’ στο τηγάνι.</li>
+        <li>Συνθέτω το burger με τα ψωμάκια, sauce, μαρούλι και τουρσί.</li>
+      </ul>
+
+      <h3 style="color:#2b6cb0;">Διατροφικός πίνακας</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Θρεπτικά συστατικά</th>
+            <th>100γρ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Θερμίδες</td><td>455kcal</td></tr>
+          <tr><td>Υδατάνθρακες</td><td>23,5g</td></tr>
+          <tr><td>Πρωτεΐνη</td><td>35,3g</td></tr>
+          <tr><td>Λιπαρά</td><td>24,4g</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:#2b6cb0;">Διατροφικά οφέλη βασικών συστατικών</h3>
+
+      <h4 style="color:#3a6629;">Γλυκοπατάτα</h4>
+      <p>Η γλυκοπατάτα είναι ένα από τα πιο <strong>θρεπτικά αμυλούχα λαχανικά</strong>, γνωστή για την υψηλή περιεκτικότητά της σε <strong>βιταμίνη Α</strong>.</p>
+      <ul>
+        <li><strong>Αντιοξειδωτική δράση:</strong> Χάρη στα υψηλά επίπεδα β-καροτενίου, βιταμίνης C και ανθοκυανινών, προστατεύει τα κύτταρα από οξειδωτική φθορά.</li>
+        <li><strong>Πεπτικό σύστημα:</strong> Οι φυτικές ίνες προάγουν τη λειτουργία του εντέρου και βοηθούν στην πρόληψη δυσκοιλιότητας.</li>
+        <li><strong>Γλυκαιμικός δείκτης:</strong> Μέτριος, ειδικά όταν βράζεται, αυξάνει πιο αργά τα επίπεδα γλυκόζης στο αίμα.</li>
+      </ul>
+
+      <h4 style="color:#b8860b;">Κοτόπουλο</h4>
+      <p>Το κοτόπουλο είναι εξαιρετική πηγή και πολλών μικροθρεπτικών συστατικών:</p>
+      <ul>
+        <li><strong>Βιταμίνες του Συμπλέγματος Β:</strong> Είναι ιδιαίτερα πλούσιο σε:
+          <ul>
+            <li><strong>Νιασίνη (B3):</strong> Σημαντική για τον μεταβολισμό της ενέργειας, την υγεία του δέρματος και του νευρικού συστήματος.</li>
+            <li><strong>Πυριδοξίνη (B6):</strong> Συμμετέχει σε πολλές μεταβολικές διεργασίες και στην υγεία του ανοσοποιητικού.</li>
+            <li><strong>Κοβαλαμίνη (B12):</strong> Απαραίτητη για τον σχηματισμό των ερυθρών αιμοσφαιρίων και τη λειτουργία του νευρικού συστήματος (αν και το μοσχάρι υπερέχει).</li>
+          </ul>
+        </li>
+        <li><strong>Μέταλλα & Ιχνοστοιχεία:</strong>
+          <ul>
+            <li><strong>Σελήνιο:</strong> Ένα ισχυρό αντιοξειδωτικό που υποστηρίζει τη λειτουργία του θυρεοειδούς.</li>
+            <li><strong>Φώσφορος:</strong> Σημαντικός για τα οστά, τα δόντια και την παραγωγή ενέργειας.</li>
+            <li><strong>Ψευδάργυρος:</strong> Κλειδί για το ανοσοποιητικό σύστημα και την επούλωση πληγών.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Tip</h3>
+      <p>Η γλυκοπατάτα είναι εξαιρετικά πλούσια σε <strong>β-καροτένιο</strong> (που μετατρέπεται σε βιταμίνη Α), απαραίτητη για την όραση, το ανοσοποιητικό και την υγεία του δέρματος. 
+      Άρα, τι καλύτερο από μια τροφή που μας φροντίζει μέσα και έξω;</p>
+      `
+      },
+      en: {
+        title: "Sweet Potato Burger",
+        contentHtml: `
+      <h3>Sweet Potato Burger</h3>
+
+      <p><strong>Servings:</strong> 4 &nbsp; <strong>Yield:</strong> 4</p>
+      <p>
+        <strong style="color:#e67e22;">Total time:</strong> 40’, 
+        <strong style="color:#e67e22;">Difficulty:</strong> Easy, 
+        <strong style="color:#e67e22;">Calories per serving:</strong> 455Kcal, 
+        <strong>Meal:</strong> Lunch/Dinner (High protein)
+      </p>
+      <p><strong>Nutritional profile:</strong> High protein</p>
+
+      <h3>Ingredients:</h3>
+      <h4>Sweet Potato Buns (6 pieces)</h4>
+      <ul>
+        <li>160g grated sweet potato</li>
+        <li>1 egg</li>
+        <li>70g light yellow cheese</li>
+        <li>2 tbsp whole wheat flour</li>
+        <li>Salt, pepper, sweet paprika, 1 tsp olive oil</li>
+      </ul>
+      <p><em>Cook in a pan or air fryer for 15 minutes at 200°C.</em></p>
+
+      <h4>4 Chicken Burgers</h4>
+      <ul>
+        <li>500g ground chicken</li>
+        <li>1 onion</li>
+        <li>1 small grated tomato</li>
+        <li>1 tbsp olive oil</li>
+        <li>1 egg</li>
+        <li>1 tsp vinegar</li>
+        <li>1 tsp mustard</li>
+        <li>1 tsp oregano</li>
+        <li>4 tbsp oats</li>
+        <li>1 tbsp chopped parsley</li>
+        <li>Salt, pepper</li>
+      </ul>
+
+      <h4>Mustard Sauce</h4>
+      <ul>
+        <li>2 tbsp yogurt (2%)</li>
+        <li>2 tbsp light mayonnaise</li>
+        <li>1 tbsp mild mustard</li>
+        <li>2 tsp agave syrup</li>
+        <li>1/4 tsp white vinegar</li>
+        <li>Salt, pepper, sweet paprika</li>
+      </ul>
+
+      <h4>For serving:</h4>
+      <ul>
+        <li>4 lettuce leaves</li>
+        <li>2–3 pickled cucumbers</li>
+      </ul>
+
+      <h3>Instructions:</h3>
+      <ul>
+        <li>Cook the sweet potato buns for 15 minutes in a pan or air fryer at 200°C.</li>
+        <li>Cook the chicken patties (pressed flat) for 15 minutes in a pan.</li>
+        <li>Assemble the burger with the buns, sauce, lettuce, and pickles.</li>
+      </ul>
+
+      <h3 style="color:#2b6cb0;">Nutritional Table</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nutrients</th>
+            <th>Per 100g</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Calories</td><td>455kcal</td></tr>
+          <tr><td>Carbohydrates</td><td>23.5g</td></tr>
+          <tr><td>Protein</td><td>35.3g</td></tr>
+          <tr><td>Fat</td><td>24.4g</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:#2b6cb0;">Nutritional Benefits of Key Ingredients</h3>
+
+      <h4 style="color:#3a6629;">Sweet Potato</h4>
+      <p>Sweet potato is one of the most <strong>nutrient-rich starchy vegetables</strong>, known for its high <strong>vitamin A</strong> content.</p>
+      <ul>
+        <li><strong>Antioxidant Action:</strong> Rich in beta-carotene, vitamin C, and anthocyanins, protecting cells from oxidative stress.</li>
+        <li><strong>Digestive Health:</strong> High fiber content promotes bowel health and prevents constipation.</li>
+        <li><strong>Glycemic Index:</strong> Moderate, especially when boiled, helping maintain stable blood glucose levels.</li>
+      </ul>
+
+      <h4 style="color:#b8860b;">Chicken</h4>
+      <p>Chicken is an excellent source of many micronutrients:</p>
+      <ul>
+        <li><strong>B Vitamins:</strong> Especially rich in:
+          <ul>
+            <li><strong>Niacin (B3):</strong> Important for energy metabolism, skin health, and nervous system function.</li>
+            <li><strong>Pyridoxine (B6):</strong> Involved in many metabolic processes and supports immune health.</li>
+            <li><strong>Cobalamin (B12):</strong> Essential for red blood cell formation and proper nerve function (though beef contains more).</li>
+          </ul>
+        </li>
+        <li><strong>Minerals & Trace Elements:</strong>
+          <ul>
+            <li><strong>Selenium:</strong> A powerful antioxidant that supports thyroid function.</li>
+            <li><strong>Phosphorus:</strong> Important for bones, teeth, and energy production.</li>
+            <li><strong>Zinc:</strong> Key for immune system function and wound healing.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Tip</h3>
+      <p>Sweet potato is rich in <strong>beta-carotene</strong> (which converts into vitamin A), essential for vision, immunity, and skin health. 
+      What better food than one that nourishes us inside and out?</p>
+      `
+      }
+    },
+    instagramPostUrl: "https://www.instagram.com/p/DQ1Ilk8DGfQ/",
+    instagramProfileUrl: "https://www.instagram.com/annalicious_healthybites/"
+  },
+
+
+
 
 
 
