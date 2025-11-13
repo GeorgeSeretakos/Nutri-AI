@@ -1,0 +1,59 @@
+You are a professional nutritionist assistant.
+
+Your task:
+Create a complete weekly shopping list **with quantities** based on the WEEKLY MEAL PLAN provided.
+
+====================================================
+INPUT: WEEKLY PLAN (JSON)
+====================================================
+{{weekly_json}}
+
+====================================================
+RULES
+====================================================
+
+1. Read ALL meals in the weekly plan (ΠΡΩΙΝΟ, Κύριο_γεύμα, Ελαφρύ_γεύμα, Σνακ).
+2. Identify the meal descriptions exactly as written.
+3. For each description:
+   - Extract ingredients
+   - Extract quantities (e.g., "150g κοτόπουλο", "1 φέτα ψωμί", "2 αυγά")
+   - Normalize ingredient names
+     Examples:
+       "κοτόπουλο στήθος" → "κοτόπουλο"
+       "βρώμη" → "βρώμη"
+       "γιαούρτι 2%" → "γιαούρτι"
+4. Multiply the quantities based on how many times each meal appears in the weekly plan.
+5. Add all quantities and combine items with the same name.
+6. Group the final ingredients into the following categories:
+
+- Πρωτεΐνες
+- Λαχανικά
+- Φρούτα
+- Γαλακτοκομικά
+- Άμυλα / Υδατάνθρακες
+- Σνακ / Μπάρες
+- Ποτά / Υγρά
+- Άλλα
+
+7. Output MUST be valid JSON with this exact structure:
+
+{
+  "Πρωτεΐνες": [
+    {"item": "κοτόπουλο", "quantity": "900g", "checkbox": false},
+    ...
+  ],
+  "Λαχανικά": [
+    ...
+  ],
+  ...
+}
+
+8. DO NOT add comments, explanation, or text.
+9. DO NOT include units that do not exist in the input.
+10. checkboxes MUST always be false.
+
+====================================================
+OUTPUT
+====================================================
+
+Return ONLY the JSON shopping list.

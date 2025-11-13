@@ -1,0 +1,258 @@
+{
+  "user_name": "Kostas",
+  "birth_date": null,
+  "height": 190.0,
+  "exercise": "high",
+  "goal": "weight loss",
+  "sections": {
+    "breakfast": [
+      {
+        "description": "Παντούφλια στο φούρνο με αποστραγγισμένο φέτα και σπανάκι, 1 κομμάτι αραβικό ψωμί",
+        "frequency": "Κάθε μέρα",
+        "recommended_products": null,
+        "comments": null
+      },
+      {
+        "description": "Γιαούρτι με φύκο και 1 φλιτζάνι φρέσκο φρούτο (π.χ. μήλο)",
+        "frequency": "Έως 1 φορά/εβδομάδα",
+        "recommended_products": null,
+        "comments": null
+      }
+    ],
+    "main_meals": [
+      {
+        "description": "Σαλάτα με γαλακτοκομικά (γιαούρτι ή φέτα), ρίζες (καρότα, σέλινο), αυγό σκληρό, ελαιόλαδο",
+        "frequency": "Τουλάχιστον 1 φορά/εβδομάδα",
+        "recommended_products": null,
+        "comments": null
+      },
+      {
+        "description": "Ψάρι (σολομός ή γλώσσα) με ρύζι άσπρο και αποστραγγισμένο λαχανικό",
+        "frequency": "Τουλάχιστον 1 φορά/εβδομάδα",
+        "recommended_products": null,
+        "comments": null
+      },
+      {
+        "description": "Χοιρινό σπλαχνικό με πατάτα ψητή και σαλάτα από πράσινα λαχανικά",
+        "frequency": "Έως 1 φορά/15 ημέρες",
+        "recommended_products": null,
+        "comments": null
+      }
+    ],
+    "light_meals": [
+      {
+        "description": "Γιαούρτι με ρύζι άσπρο και πράσινα λαχανικά",
+        "frequency": "Τουλάχιστον 1 φορά/εβδομάδα",
+        "recommended_products": null,
+        "comments": null
+      },
+      {
+        "description": "Χοιρινό με πατάτα ψητή και σαλάτα από πράσινα λαχανικά",
+        "frequency": "Έως 1 φορά/15 ημέρες",
+        "recommended_products": null,
+        "comments": null
+      }
+    ],
+    "snacks": [
+      {
+        "description": "Φρούτα (π.χ. μήλο, καρότο)",
+        "frequency": "Κάθε μέρα",
+        "recommended_products": null,
+        "comments": null
+      },
+      {
+        "description": "Φασόλια στο φούρνο με λάχανο",
+        "frequency": "Έως 1 φορά/εβδομάδα",
+        "recommended_products": null,
+        "comments": null
+      }
+    ]
+  },
+  "fruit_list": [
+    {
+      "name": "μήλο",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "μπανάνα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "πορτοκάλι",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "αχλάδι",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "κεράσια",
+      "quantity": "10-15 κομμάτια"
+    },
+    {
+      "name": "φράουλες",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "μαύρα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "ανανάς",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "μανγκό",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "κιβώλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "πατάτα",
+      "quantity": "1 μεγάλη"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "κρεμμύδι",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "σέλινο",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "λάχανο",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "σπανάκι",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "μπρόκολα",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "μπανάνα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "αχλάδι",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "κεράσια",
+      "quantity": "10-15 κομμάτια"
+    },
+    {
+      "name": "φράουλες",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "μαύρα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "ανανάς",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "μανγκό",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "κιβώλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "πατάτα",
+      "quantity": "1 μεγάλη"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "κρεμμύδι",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "σέλινο",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "λάχανο",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "σπανάκι",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "μπρόκολα",
+      "quantity": "1 φλιτζάνι"
+    },
+    {
+      "name": "καρότα",
+      "quantity": "1 κομμάτι"
+    },
+    {
+      "name": "πράσινα φασόλια",
+      "quantity": "1 φλιτζάνι"
+    }
+  ],
+  "additional_notes": "Αποφύγετε τα τόματα και τα προϊόντα που περιέχουν τόματα λόγω αλλεργίας."
+}
