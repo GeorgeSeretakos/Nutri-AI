@@ -1,0 +1,31 @@
+{
+  "user_name": "",
+  "birth_date": "",
+  "height": "",
+  "exercise": "",
+  "goal": "",
+  "sections": {
+    "ΠΡΩΙΝΟ": {
+      "title": "ΠΡΩΙΝΟ",
+      "options": [],
+      "comments": ""
+    },
+    "Κύρια γεύματα": {
+      "title": "Κύρια γεύματα",
+      "options": [],
+      "comments": ""
+    },
+    "Ελαφριά γεύματα": {
+      "title": "Ελαφριά γεύματα",
+      "options": [],
+      "comments": ""
+    },
+    "Σνακ": {
+      "title": "Σνακ",
+      "options": [],
+      "comments": ""
+    }
+  },
+  "fruit_list": [],
+  "additional_notes": ""
+}
