@@ -10,6 +10,9 @@ export default function AuthorizedNavbar({
                                            role,
                                            showLogout = true,
                                            logoutAction = "/api/logout",
+                                           hasSidebar = false,
+                                           sidebarOpen = true,
+                                           onToggleSidebar,
                                          }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
@@ -38,11 +41,16 @@ export default function AuthorizedNavbar({
     },
   }[locale] || L.el;
 
-  // Menu items per role (easy to extend)
   const items =
     role === "admin"
       ? [{ href: "/admin", label: L.clients }]
       : [];
+
+  const handleSidebarToggle = () => {
+    if (hasSidebar && typeof onToggleSidebar === "function") {
+      onToggleSidebar(!sidebarOpen);
+    }
+  };
 
   return (
     <>
@@ -50,18 +58,41 @@ export default function AuthorizedNavbar({
       <nav className="fixed top-0 inset-x-0 z-50 bg-black backdrop-blur border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* Brand (left) */}
-            <div
-              className="inline-flex items-center gap-2 rounded-md px-2 py-1 -mx-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-800"
-            >
-              <span className="text-white font-semibold tracking-tight">
-                {role === "admin" ? L.brandAdmin : L.brandClient}
-              </span>
+            {/* Left: sidebar toggle (desktop) + brand */}
+            <div className="flex items-center gap-3">
+              {hasSidebar && role === "admin" && (
+                <button
+                  type="button"
+                  onClick={handleSidebarToggle}
+                  className="
+                    hidden md:inline-flex
+                    items-center justify-center
+                    w-8 h-8 rounded-full
+                    border border-white/20
+                    bg-white/10
+                    text-white
+                    hover:bg-white/20
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60
+                  "
+                  aria-label={sidebarOpen ? "Κρύψε sidebar" : "Εμφάνισε sidebar"}
+                >
+                  <span className="text-lg leading-none">
+                    {sidebarOpen ? "⟨" : "⟩"}
+                  </span>
+                </button>
+              )}
+
+              <div
+                className="inline-flex items-center gap-2 rounded-md px-2 py-1 -mx-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-800"
+              >
+                <span className="text-white font-semibold tracking-tight">
+                  {role === "admin" ? L.brandAdmin : L.brandClient}
+                </span>
+              </div>
             </div>
 
             {/* Desktop menu */}
             <div className="hidden sm:flex items-center gap-2">
-              {/* Language toggle */}
               <LangToggle currentLocale={locale} />
 
               {items.map((it) => (
@@ -85,7 +116,6 @@ export default function AuthorizedNavbar({
 
             {/* Mobile toggle */}
             <div className="sm:hidden flex items-center gap-2">
-              {/* Language toggle (compact) */}
               <LangToggle currentLocale={locale} size="sm" />
 
               <button
@@ -137,6 +167,7 @@ export default function AuthorizedNavbar({
   );
 }
 
+/* NavItem, MobileItem, LangToggle stay as they were */
 function NavItem({ href, label }) {
   const pathname = usePathname();
   const isActive = pathname === href || pathname.startsWith(href + "/");
@@ -153,7 +184,6 @@ function NavItem({ href, label }) {
       ].join(" ")}
     >
       <span>{label}</span>
-      {/* underline accent on hover/active */}
       <span
         className={[
           "ml-2 h-[2px] w-0 bg-white/70 rounded-full transition-all duration-200",
@@ -184,11 +214,6 @@ function MobileItem({ href, label }) {
   );
 }
 
-/**
- * Small EL/EN toggle.
- * Persists to localStorage + cookie, then reloads so the app picks it up everywhere.
- * size: "md" | "sm"
- */
 function LangToggle({ currentLocale = "el", size = "md" }) {
   const isGreek = currentLocale === "el";
 
@@ -197,7 +222,6 @@ function LangToggle({ currentLocale = "el", size = "md" }) {
       localStorage.setItem("locale", next);
       document.cookie = `locale=${next};path=/;max-age=31536000`;
     } catch {}
-    // Force refresh so SSR/edge or providers read the new cookie
     window.location.reload();
   };
 

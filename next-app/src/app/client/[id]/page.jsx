@@ -5,10 +5,7 @@ import UnauthorizedRedirect from "@/app/components/UnauthorizedRedirect";
 import ClientDetail from "@/app/components/admin/ClientDetail";
 
 const prisma = new PrismaClient();
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY // ✅ safe on server
-);
+
 
 export default async function ClientPage({ params }) {
   const { id } = params;

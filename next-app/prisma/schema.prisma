@@ -31,6 +31,7 @@ model User {
   updatedAt DateTime @default(now()) @updatedAt
 
   documents Document[]
+  diets     Diet[] // <-- all confirmed diets for this user
 }
 
 model Document {
@@ -44,4 +45,17 @@ model Document {
 
   ownerId Int
   owner   User @relation(fields: [ownerId], references: [id])
+}
+
+model Diet {
+  id       Int  @id @default(autoincrement())
+  clientId Int
+  client   User @relation(fields: [clientId], references: [id])
+
+  plan Json
+
+  title String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
