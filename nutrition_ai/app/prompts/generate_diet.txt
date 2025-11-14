@@ -44,7 +44,93 @@ JSON TEMPLATE ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΑΚΟΛΟΥΘΗΣΕΙΣ
 Το ΤΕΛΙΚΟ ΑΠΟΤΕΛΕΣΜΑ πρέπει να είναι ΑΚΡΙΒΩΣ ένα JSON αντικείμενο
 που να ακολουθεί αυτό το template:
 
-{{json_template}}
+{
+  "user_name": "",
+  "birth_date": "",
+  "height": "",
+  "exercise": "",
+  "goal": "",
+
+  "sections": {
+    "ΠΡΩΙΝΟ": {
+      "title": "ΠΡΩΙΝΟ",
+      "groups": [
+        {
+          "label": "Πρωινές επιλογές",
+          "options": [
+            {
+              "description": "",
+              "frequency": "",
+              "recommended_products": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "comments": ""
+    },
+
+    "ΜΕΣΗΜΕΡΙΑΝΟ/ΒΡΑΔΙΝΟ": {
+      "title": "ΜΕΣΗΜΕΡΙΑΝΟ/ΒΡΑΔΙΝΟ",
+      "groups": [
+        {
+          "label": "Κύρια γεύματα",
+          "options": [
+            {
+              "description": "",
+              "frequency": "",
+              "recommended_products": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "label": "Ελαφριά γεύματα",
+          "options": [
+            {
+              "description": "",
+              "frequency": "",
+              "recommended_products": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "label": "Σνακ",
+          "options": [
+            {
+              "description": "",
+              "frequency": "",
+              "recommended_products": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "comments": ""
+    },
+
+    "ΛΙΣΤΑ ΦΡΟΥΤΩΝ": {
+      "title": "ΛΙΣΤΑ ΦΡΟΥΤΩΝ",
+      "groups": [
+        {
+          "label": "Φρούτα",
+          "options": [
+            {
+              "description": "",
+              "frequency": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "comments": ""
+    }
+  },
+
+  "additional_notes": ""
+}
+
 
 ΣΗΜΑΝΤΙΚΟ:
 - ΜΗΝ αλλάξεις τα ονόματα των keys.
@@ -90,3 +176,8 @@ JSON TEMPLATE ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΑΚΟΛΟΥΘΗΣΕΙΣ
 - ΜΗΝ χρησιμοποιήσεις markdown, ΜΗΝ βάλεις ```json ή ``` γύρω από το αποτέλεσμα.
 - ΜΗΝ επαναλάβεις το dataset των few-shots, ΜΗΝ εμφανίσεις τα παραδείγματα.
 - Δώσε μόνο το τελικό JSON της νέας διατροφής.
+
+
+====================================================
+JSON OUTPUT
+====================================================

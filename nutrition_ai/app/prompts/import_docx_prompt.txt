@@ -1,3 +1,39 @@
+You are an expert diet plan parser.
+Your job is to extract structured diet information from messy DOCX text.
+
+Below you receive the COMPLETE raw extracted text from a Word file.
+It may contain:
+- tables
+- bullet points
+- weird symbols
+- spacing issues
+- different section names
+- multiple empty lines
+
+Your task:
+--------------------------------------------
+1. Identify user attributes:
+   - ΟΝΟΜΑ
+   - ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ
+   - ΥΨΟΣ
+   - ΑΣΚΗΣΗ
+   - ΣΤΟΧΟΣ
+
+2. Identify and extract each diet section:
+   - ΠΡΩΙΝΟ
+   - ΜΕΣΗΜΕΡΙΑΝΟ/ΒΡΑΔΙΝΟ (split internally in groups)
+      • Κύρια γεύματα
+      • Ελαφριά γεύματα
+      • Σνακ (2 την ημέρα)
+   - ΛΙΣΤΑ ΦΡΟΥΤΩΝ ΠΟΥ ΜΠΟΡΕΙΣ ΝΑ ΕΠΙΛΕΞΕΙΣ
+
+3. For each option:
+   - Extract OPTION TEXT
+   - If visible, extract frequency or comments
+   - Normalize text (remove bullets, numbers)
+
+4. Fill the following JSON TEMPLATE EXACTLY:
+
 {
   "user_name": "",
   "birth_date": "",
@@ -84,3 +120,14 @@
 
   "additional_notes": ""
 }
+
+5. Do NOT invent content.
+6. If some field is missing in the DOCX, leave it empty or null.
+7. Output MUST be ONLY JSON. No markdown, no explanations.
+
+--------------------------------------------
+RAW DOCX TEXT:
+{{docx_text}}
+--------------------------------------------
+
+Return ONLY THE FINAL JSON.

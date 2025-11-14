@@ -11,17 +11,6 @@ All Greek section names are required:
 - "Ελαφριά γεύματα"
 - "Σνακ"
 
-Each section must contain:
-- "title"
-- "options" → list of objects
-    Each object contains:
-    - "description"
-    - "frequency"
-    - "recommended_products"
-    - "comments"
-- "fruit_list" must be a list of:
-    { "name": "...", "quantity": "..." }
-- "additional_notes" always included.
 
 If you must choose between:
 - non-perfect content WITH correct JSON structure

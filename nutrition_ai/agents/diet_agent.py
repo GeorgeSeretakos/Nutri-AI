@@ -45,14 +45,13 @@ class DietAgent:
             "latest_measurement": latest_measurement,
             "daily_calories": daily_calories,
             "macro_targets": json.dumps(macro_targets, ensure_ascii=False),
-            "few_shots": few_shots,
+            # "few_shots": few_shots,
             "json_template": json_template,
         }
 
         prompt = self._render_template(template, variables)
-
-        print("=== PROMPT ===")
         print(prompt)
+
 
         raw = self.client.generate(prompt)
 
@@ -66,18 +65,18 @@ class DietAgent:
 
     def update_diet(self, existing: DietPlan, feedback_text: str) -> DietPlan:
         """
-        Unified Diet Editor:
-        Takes:
-            - the existing baseline diet (DietPlan)
-            - free-text feedback from the dietitian
-        Returns:
-            - new updated DietPlan JSON
+        Updates an existing diet using free-text feedback.
+        After the first LLM attempt, we validate the JSON.
+        If invalid → send JSON + validation error back to LLM for auto-fix.
+        Up to 3 attempts.
         """
 
+        # Load required prompt files
         template = self._load_text("edit_diet.txt")
         base_instructions = self._load_text("base_instructions.txt")
         json_template = self._load_text("json_template.txt")
 
+        # Build variables for the main update prompt
         variables: Dict[str, Any] = {
             "base_instructions": base_instructions,
             "existing_diet": existing.model_dump_json(indent=2, ensure_ascii=False),
@@ -85,17 +84,75 @@ class DietAgent:
             "json_template": json_template,
         }
 
+        # Render the main prompt
         prompt = self._render_template(template, variables)
         print("=== PROMPT ===")
         print(prompt)
 
+        # First LLM call
         raw = self.client.generate(prompt)
         print("=== RAW LLM OUTPUT ===")
         print(raw)
-        clean_json = self._extract_json(raw)
-        data = json.loads(clean_json)
 
-        return DietPlan(**data)
+        # Extract body
+        clean_json = self._extract_json(raw)
+
+        # ------------------------------------------------------------
+        # AUTO-FIX VALIDATION LOOP
+        # ------------------------------------------------------------
+        for attempt in range(3):
+            try:
+                # Try parsing JSON and validating via Pydantic
+                data = json.loads(clean_json)
+                return DietPlan(**data)
+
+            except Exception as e:
+                print(f"\n❌ JSON validation failed (attempt {attempt + 1})")
+                print("Error:", str(e))
+
+                # ------------------------------------------------------------
+                # Build FIX prompt
+                # ------------------------------------------------------------
+                fix_prompt = f"""
+    You must FIX the following JSON so that it becomes VALID  
+    according to the strict JSON template.
+
+    ========================
+    INVALID JSON (must be fixed)
+    ========================
+    {clean_json}
+
+    ========================
+    VALIDATION ERROR
+    ========================
+    {str(e)}
+
+    ========================
+    JSON TEMPLATE (STRICT)
+    ========================
+    {json_template}
+
+    RULES:
+    - If you see somewhere inside the json a null options delete this field.
+    - DO NOT change any values unless needed for correctness.
+    - DO NOT add new keys.
+    - DO NOT remove mandatory keys.
+    - ONLY fix structure, brackets, lists, nulls, types.
+    - Keep Greek section names EXACTLY as required.
+    - Return ONLY valid JSON. No explanations.
+    """
+
+                print("\n=== FIX PROMPT (Sending to LLM) ===")
+                print(fix_prompt)
+
+                fixed_raw = self.client.generate(fix_prompt)
+                print("\n=== FIXED RAW LLM OUTPUT ===")
+                print(fixed_raw)
+
+                clean_json = self._extract_json(fixed_raw)
+
+        # If we reach here → all attempts failed
+        raise ValueError("❌ LLM could not produce a valid JSON after 3 attempts.")
 
     # --------------------------------------------------
     # INTERNAL HELPERS

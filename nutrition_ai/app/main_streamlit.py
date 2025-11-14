@@ -11,6 +11,9 @@ from nutrition_ai.agents.weekly_rotation_agent import WeeklyRotationAgent
 # Models
 from nutrition_ai.models.user_profile import UserProfile
 from nutrition_ai.models.diet_plan import DietPlan
+from nutrition_ai.app.utils.docx_importer  import DocxImporter
+
+docx_importer = DocxImporter()
 
 # Load env
 load_dotenv()
@@ -198,3 +201,17 @@ with col4:
             shopping = shopping_agent.build_list(weekly.model_dump_json())
             st.json(shopping)
 
+st.subheader("📄 Εισαγωγή Διατροφής από Word (.DOCX)")
+
+uploaded = st.file_uploader("Upload DOCX", type=["docx"], key="docx_uploader")
+
+if uploaded:
+    temp_path = "temp_upload.docx"
+    with open(temp_path, "wb") as f:
+        f.write(uploaded.getvalue())
+
+    if st.button("Μετατροπή DOCX → JSON → Baseline"):
+        plan = docx_importer.import_docx(temp_path)
+        save_baseline(plan)
+        st.success("Η διατροφή εισήχθη επιτυχώς από Word!")
+        st.json(json.loads(plan.model_dump_json()))

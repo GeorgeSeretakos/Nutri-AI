@@ -1,559 +1,156 @@
-[
-  {
+{
   "user_name": "DIMOU EIRINI",
   "birth_date": "30/3/77",
   "height": "1,63",
   "exercise": "PILATES 5 ΦΟΡΕΣ/ΕΒΔΟΜΑΔΑ",
   "goal": "KG",
+
   "sections": {
-    "ΠΡΩΙΝΟ": {
-      "title": "ΠΡΩΙΝΟ",
-      "options": [
+    "ΠΡΩΙΝΟ": [
+      {
+        "option": "1 ποτήρι γάλα χωρίς λακτόζη + 2 φρυγανιές + 1 κ. σούπας μαρμελάδα",
+        "frequency": null,
+        "comments": null
+      },
+      {
+        "option": "1 ποτήρι γάλα χωρίς λακτόζη + 1 μπισκότο digestive χωρίς ζάχαρη",
+        "frequency": null,
+        "comments": null
+      },
+      {
+        "option": "1 ποτήρι γάλα χωρίς λακτόζη + 1 φέτα ψωμί τοστ + 1 φέτα τυρί τοστ",
+        "frequency": null,
+        "comments": null
+      },
+      {
+        "option": "1 κρουασάν",
+        "frequency": "Έως 1 φορά/15 ημέρες",
+        "comments": null
+      },
+      {
+        "option": "1 γιαούρτι + 1 φρούτο",
+        "frequency": null,
+        "comments": null
+      }
+    ],
+
+    "ΜΕΣΗΜΕΡΙΑΝΟ/ΒΡΑΔΙΝΟ": {
+      "groups": [
         {
-          "description": "1 ποτήρι γάλα χωρίς λακτόζη + 2 φρυγανιές + 1 κ. σούπας μαρμελάδα",
-          "frequency": null,
-          "recommended_products": null
+          "label": "Κύρια γεύματα",
+          "options": [
+            {
+              "option": "1 μερίδα κοτόπουλο ή 2 καλαμάκια κοτόπουλου + σαλάτα + 1 κ. σούπας λάδι + 3-4 πατάτες φούρνου ή 4 κ. σούπας ρύζι",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "2 κουτάλες όσπρια + 2 φρυγανιές + 60γρ τυρί",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": null
+            },
+            {
+              "option": "1 πιάτο λαδερό ή 2 γεμιστά + 60γρ τυρί + 2 φρυγανιές",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": null
+            },
+            {
+              "option": "2 μικρά μπιφτέκια ή 1 μπριζόλα + σαλάτα + 1 κ. σούπας λάδι + 1 φέτα ψωμί",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": "Επιλογή εξόδου"
+            },
+            {
+              "option": "2 κομμάτια μοσχάρι κοκκινιστό ή λεμονάτο + 4 κ. σούπας ρύζι ή κινόα + αγγούρι + ντομάτα χωρίς λάδι",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": "Προσπάθησε το μοσχάρι έως 1 φορά/εβδομάδα"
+            },
+            {
+              "option": "Σουβλάκι: 1 πίτα αλάδωτη + 1 καλαμάκι κοτόπουλο + τζατζίκι + ντομάτα + σαλάτα",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": "Επιλογή εξόδου"
+            },
+            {
+              "option": "1 πιάτο μακαρόνια + 3-4 κ.σ. σάλτσα + 60γρ τυρί",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": "Ιδανικά μεσημέρι"
+            },
+            {
+              "option": "1 πιάτο μακαρόνια + 3-4 κ.σ. κιμά + 30γρ τυρί",
+              "frequency": "Εναλλακτικά",
+              "comments": null
+            },
+            {
+              "option": "2 κομμάτια πίτσα + σαλάτα",
+              "frequency": "Έως 1 φορά/εβδομάδα",
+              "comments": null
+            }
+          ]
         },
+
         {
-          "description": "1 ποτήρι γάλα χωρίς λακτόζη + 1 μπισκότο digestive χωρίς ζάχαρη",
-          "frequency": null,
-          "recommended_products": null
+          "label": "Ελαφριά γεύματα",
+          "options": [
+            {
+              "option": "Ομελέτα: 1 αυγό + 100γρ ασπράδι + πιπεριές + 1 φέτα γαλοπούλα + σαλάτα + 30γρ τυρί light",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "1 αραβική (180 θερμίδες) + 1 φέτα τυρί ή 2 κ.σ. τυρί κρέμα + λαχανικά + σαλάτα + 1 κ.σ. λάδι",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "Σαλάτα πράσινη + 80γρ κοτόπουλο + 1 κ.σ. λάδι + 2 παξιμαδάκια",
+              "frequency": null,
+              "comments": null
+            }
+          ]
         },
+
         {
-          "description": "1 ποτήρι γάλα χωρίς λακτόζη + 1 φέτα ψωμί τοστ + 1 φέτα τυρί τοστ",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 κροασανάκι",
-          "frequency": "Έως 1 φορά/15 ημέρες",
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 φρούτο",
-          "frequency": null,
-          "recommended_products": null
+          "label": "Σνακ (2 την ημέρα)",
+          "options": [
+            {
+              "option": "1 φρούτο",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "1 κλειστή χούφτα ξηρούς καρπούς",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "1 γιαούρτι + 1 φρούτο ή 1 κ.γ. μέλι + 1/2 χούφτα ξηρούς καρπούς",
+              "frequency": null,
+              "comments": null
+            },
+            {
+              "option": "1 σοκολατάκι Παυλίδη noisette",
+              "frequency": "Κάθε μέρα",
+              "comments": null
+            },
+            {
+              "option": "1 γλυκάκι Slim Bites",
+              "frequency": null,
+              "comments": null
+            }
+          ]
         }
-      ],
-      "comments": null
+      ]
     },
-    "Κύρια γεύματα": {
-      "title": "Κύρια γεύματα",
-      "options": [
-        {
-          "description": "1 μερίδα κοτόπουλο ή 2 καλαμάκια κοτόπουλου + σαλάτα επιλογής + 1 κ. σούπας λάδι + 3-4 πατάτες φούρνου ή 4 κ. σούπας ρύζι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "2 κουτάλες όσπρια επιλογής + 2 φρυγανιές + 60γρ τυρί (αν θες να φας σαλάτα – μόνο λίγο αγγούρι)",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "1 πιάτο λαδερό ή 2 κομμάτια γεμιστά + 60γρ τυρί + 2 φρυγανιές",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "2 μικρά μπιφτέκια ή 1 μέτρια μπριζόλα + σαλάτα + 1 κ. σούπας λάδι + 1 φέτα ψωμί",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "2 μικρά κομμάτια μοσχάρι κοκκινιστό ή λεμονάτο + 4 κ. σούπας ρύζι ή κινόα + αγγούρι + ντομάτα χωρίς λάδι",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Προσπάθησε το μοσχάρι έως 1 φορά/εβδομάδα"
-        },
-        {
-          "description": "Σουβλάκι: 1 πίτα αλάδωτη + 1 καλαμάκι κοτόπουλο + τζατζίκι + ντομάτα + σαλάτα",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια + 3-4 κ. σούπας σάλτσα + 60γρ τυρί τριμμένο",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Ιδανικά μεσημέρι"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια + 3-4 κ. σούπας κιμά + 30γρ τυρί τριμμένο",
-          "frequency": "Εναλλακτικά",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "2 κομμάτια πίτσα + σαλάτα",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-    "Ελαφριά γεύματα": {
-      "title": "Ελαφριά γεύματα",
-      "options": [
-        {
-          "description": "Ομελέτα με 1 αυγό + 100γρ ασπράδι + πιπεριές + 1 φέτα γαλοπούλα + σαλάτα + 30γρ τυρί light",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 αραβική (180 θερμίδες) + 1 φέτα τυρί ή 2 κ.σ. τυρί κρέμα + λαχανικά + σαλάτα + 1 κ.σ. λάδι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Σαλάτα πράσινη + 80γρ κοτόπουλο + 1 κ.σ. λάδι + 2 παξιμαδάκια",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-    "Σνακ": {
-      "title": "Σνακ",
-      "options": [
-        {
-          "description": "1 φρούτο (συμπεριλαμβάνει μπανάνα)",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 κλειστή χούφτα ξηρούς καρπούς",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 φρούτο ή 1 κ.γ. μέλι + 1/2 χούφτα ξηρούς καρπούς",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 σοκολατάκι Παυλίδη noisette",
-          "frequency": "Κάθε μέρα",
-          "recommended_products": null
-        },
-        {
-          "description": "1 γλυκάκι Slim Bites",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    }
+
+    "ΛΙΣΤΑ ΦΡΟΥΤΩΝ ΠΟΥ ΜΠΟΡΕΙΣ ΝΑ ΕΠΙΛΕΞΕΙΣ": [
+      { "option": "Ακτινίδιο", "frequency": "1 μεγάλο", "comments": null },
+      { "option": "Ανανάς (φρέσκος)", "frequency": "¾ φλιτζανιού", "comments": null },
+      { "option": "Ανανάς (κονσέρβα)", "frequency": "½ φλιτζάνι", "comments": null },
+      { "option": "Αχλάδι (φρέσκο)", "frequency": "1 μέτριο", "comments": null },
+      { "option": "Αχλάδι (κομπόστα)", "frequency": "½ φλιτζάνι", "comments": null },
+      { "option": "Βατόμουρα", "frequency": "¾ φλιτζανιού", "comments": null }
+    ]
   },
-  "fruit_list": [
-    { "name": "Ακτινίδιο", "quantity": "1 μεγάλο" },
-    { "name": "Ανανάς (φρέσκος)", "quantity": "¾ φλιτζανιού" },
-    { "name": "Ανανάς (κονσέρβα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Αχλάδι (φρέσκο)", "quantity": "1 μέτριο" },
-    { "name": "Αχλάδι (κομπόστα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Βατόμουρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Βερίκοκα", "quantity": "4 μέτρια" },
-    { "name": "Βερίκοκα αποξηραμένα", "quantity": "4 τεμάχια" },
-    { "name": "Βερίκοκα κομπόστα", "quantity": "½ φλιτζάνι ή 2 τεμάχια" },
-    { "name": "Γκρέιπφρουτ", "quantity": "½ μεγάλο" },
-    { "name": "Δαμάσκηνα φρέσκα", "quantity": "2" },
-    { "name": "Δαμάσκηνα αποξηραμένα", "quantity": "3" },
-    { "name": "Καρπούζι", "quantity": "1 φέτα" },
-    { "name": "Κεράσια", "quantity": "12 μεγάλα" },
-    { "name": "Μάνγκο", "quantity": "½ μικρό" },
-    { "name": "Μανταρίνι", "quantity": "2 μικρά" },
-    { "name": "Μήλο", "quantity": "1 τεμάχιο" },
-    { "name": "Μήλο κομπόστα", "quantity": "½ φλιτζάνι" },
-    { "name": "Μούρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Μπανάνα", "quantity": "1 μικρή" },
-    { "name": "Νεκταρίνι", "quantity": "1 μικρό" },
-    { "name": "Πεπόνι", "quantity": "1 φλιτζάνι" },
-    { "name": "Πορτοκάλι", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο κομπόστα", "quantity": "½ φλιτζάνι" },
-    { "name": "Σταφίδες", "quantity": "1 κ.σ." },
-    { "name": "Σταφύλια", "quantity": "17 μικρές ρόγες" },
-    { "name": "Σύκα", "quantity": "2 μέτρια" },
-    { "name": "Σύκα αποξηραμένα", "quantity": "2 μέτρια" },
-    { "name": "Φράουλες", "quantity": "1 ¼ φλιτζανιού" },
-    { "name": "Χουρμάδες", "quantity": "3 τεμάχια" }
-  ],
-  "additional_notes": null
-},
-{
-  "user_name": "ALBANI ELENI",
-  "birth_date": "25/2/83",
-  "height": "1,67",
-  "exercise": "",
-  "goal": "KG",
-  "sections": {
-    "ΠΡΩΙΝΟ": {
-      "title": "ΠΡΩΙΝΟ",
-      "options": [
-        {
-          "description": "2 φρυγανιές + 1 κ. γλυκού βούτυρο + 1 κ. γλυκού μέλι + καφέ με γάλα",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 φέτα ψωμί + 1 φέτα τυρί + 1 φέτα γαλοπούλα",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-    "Κύρια γεύματα": {
-      "title": "Κύρια γεύματα",
-      "options": [
-        {
-          "description": "1 μερίδα κοτόπουλο ή 2 καλαμάκια κοτόπουλου + σαλάτα επιλογής + 1 κ. σούπας λάδι + 3-4 πατάτες φούρνου ή 4 κ. σούπας ρύζι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 μέτριο ψάρι ή σολομό ή 1 τόνο σε νερό + σαλάτα επιλογής (αν βάλεις ψητά λαχανικά με λάδι – δεν προσθέτεις επιπλέον λάδι) + 1 φέτα ψωμί",
-          "frequency": "Τουλάχιστον 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "2 κουτάλες όσπρια + 2 φρυγανιές + 60γρ τυρί (αν φας σαλάτα – μόνο λίγο αγγούρι)",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "1 πιάτο λαδερό ή 2 κομμάτια γεμιστά + 60γρ τυρί + 2 φρυγανιές",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "2 μικρά μπιφτέκια ή 1 μέτρια μπριζόλα + σαλάτα + 1 κ. σούπας λάδι + 1 φέτα ψωμί",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "2 μικρά κομμάτια μοσχάρι κοκκινιστό ή λεμονάτο + 4 κ. σούπας ρύζι ή κινόα + αγγούρι + ντομάτα χωρίς λάδι",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Προσπάθησε το μοσχάρι έως 1 φορά/εβδομάδα"
-        },
-        {
-          "description": "Σουβλάκι: 1 πίτα αλάδωτη + 1 καλαμάκι κοτόπουλο + σως γιαουρτιού + ντομάτα + σαλάτα",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια (σε βαθύ πιάτο – να μην ξεπερνά το χείλος) + 3-4 κ. σούπας σάλτσα + 60γρ τυρί τριμμένο",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Ιδανικά μεσημέρι"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια (σε βαθύ πιάτο) + 3-4 κ. σούπας κιμά + 30γρ τυρί τριμμένο",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-    "Ελαφριά γεύματα": {
-      "title": "Ελαφριά γεύματα",
-      "options": [
-        {
-          "description": "Ομελέτα: 1 αυγό + 100γρ ασπράδι + πιπεριές + 1 φέτα γαλοπούλα 0%-3% + σαλάτα + 30γρ light τυρί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 αραβική (180 θερμίδες) + 50γρ κοτόπουλο ή 1 αυγό ή 2 φέτες γαλοπούλα + λαχανικά + σαλάτα + 1 κ. σούπας λάδι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Σαλάτα πράσινη + 80γρ κοτόπουλο + 1 κ. σούπας λάδι + 2 παξιμαδάκια",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Ντάκος ή παξιμαδάκια (έως 180 θερμίδες) + 80γρ κατίκι + σαλάτα επιλογής + 1 κ. σούπας λάδι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 φρούτο + 1 κ. γλυκού μέλι",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": "Αλκοόλ: 2-3 ποτά/εβδομάδα"
-    },
-    "Σνακ": {
-      "title": "Σνακ",
-      "options": [
-        {
-          "description": "1 φρούτο + 1/2 χούφτα ξηρούς καρπούς",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 κλειστή χούφτα ξηρούς καρπούς",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "2 κράκερς + 1 τυράκι Babybel ή 1 τριγωνάκι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 μπάρα έως 120 θερμίδες",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 αυγό + 1 φρυγανιά + 1 φέτα τυρί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 κ. γλυκού μέλι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 σοκοφρέτα",
-          "frequency": "Έως 2 φορές/εβδομάδα",
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    }
-  },
-  "fruit_list": [
-    { "name": "Ακτινίδιο", "quantity": "1 μεγάλο" },
-    { "name": "Ανανάς (φρέσκος)", "quantity": "¾ φλιτζανιού" },
-    { "name": "Ανανάς (κονσέρβα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Αχλάδι (φρέσκο)", "quantity": "1 μέτριο" },
-    { "name": "Αχλάδι (κομπόστα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Βατόμουρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Βερίκοκα", "quantity": "4 μέτρια" },
-    { "name": "Βερίκοκα αποξηραμένα", "quantity": "4 τεμάχια" },
-    { "name": "Βερίκοκα κομπόστα άγλυκη", "quantity": "½ φλιτζάνι ή 2 τεμάχια" },
-    { "name": "Γκρέιπφρουτ (φρέσκο)", "quantity": "½ μεγάλο" },
-    { "name": "Δαμάσκηνα (φρέσκα)", "quantity": "2 φρέσκα" },
-    { "name": "Δαμάσκηνα αποξηραμένα", "quantity": "3 μέτρια" },
-    { "name": "Καρπούζι", "quantity": "1 φέτα" },
-    { "name": "Κεράσια", "quantity": "12 μεγάλα" },
-    { "name": "Μάνγκο", "quantity": "½ μικρό" },
-    { "name": "Μανταρίνι", "quantity": "2 μικρά" },
-    { "name": "Μήλο", "quantity": "1 τεμάχιο" },
-    { "name": "Μήλο κομπόστα άγλυκα", "quantity": "½ φλιτζάνι" },
-    { "name": "Μούρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Μπανάνα", "quantity": "1 μικρή" },
-    { "name": "Νεκταρίνι", "quantity": "1 μικρό" },
-    { "name": "Πεπόνι", "quantity": "1 φλιτζάνι" },
-    { "name": "Πορτοκάλι", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο κομπόστα", "quantity": "½ φλιτζάνι" },
-    { "name": "Σταφίδες", "quantity": "1 κ.σ." },
-    { "name": "Σταφύλια", "quantity": "17 μικρές ρόγες" },
-    { "name": "Σύκα (φρέσκα)", "quantity": "2" },
-    { "name": "Σύκα αποξηραμένα", "quantity": "2" },
-    { "name": "Φράουλες", "quantity": "1 ¼ φλιτζανιού" },
-    { "name": "Χουρμάδες", "quantity": "3 τεμάχια" }
-  ],
-  "additional_notes": null
-},
-{
-  "user_name": "PAPADIMITRIOU TASOS",
-  "birth_date": "6/5/90",
-  "height": "1,90",
-  "exercise": "",
-  "goal": "",
-  "sections": {
-    "ΠΡΩΙΝΟ": {
-      "title": "ΠΡΩΙΝΟ",
-      "options": [
-        {
-          "description": "1 ποτήρι γάλα + 50γρ δημητριακά",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 ποτήρι γάλα + 1 μπάρα έως 160 θερμίδες",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "2 αυγά + 1 φέτα ψωμί + 1 φέτα τυρί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 μπάρα έως 160 θερμίδες",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-
-    "Κύρια γεύματα": {
-      "title": "Κύρια γεύματα",
-      "options": [
-        {
-          "description": "1 μερίδα κοτόπουλο ή 3 καλαμάκια κοτόπουλου + σαλάτα επιλογής + 1 κ. σούπας λάδι + 4-5 κ. σούπας ρύζι ή κινόα ή 4-5 πατάτες φούρνου",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 μεγάλο ψάρι ή σολομό ή 1 τόνο σε νερό + σαλάτα επιλογής + 1 κ. σούπας λάδι + 1 φέτα ψωμί",
-          "frequency": "Τουλάχιστον 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "3 κουτάλες όσπρια επιλογής + 2 φέτες ψωμί (αν θες σαλάτα – μόνο λίγο αγγούρι)",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "1 πιάτο λαδερό με λίγο λάδι (ή 2 μεγάλα γεμιστά) + 60γρ τυρί + 2 φέτες ψωμί",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": null
-        },
-        {
-          "description": "2 μέτρια κομμάτια μοσχάρι κοκκινιστό ή λεμονάτο + 4 κ.σ. ρύζι ή κινόα + αγγούρι + ντομάτα + 1 κ.σ. λάδι",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Προσπάθησε το μοσχάρι έως 1 φορά/εβδομάδα"
-        },
-        {
-          "description": "2 μέτρια μπιφτέκια ή 1 μεγάλη μπριζόλα + σαλάτα + 1 κ.σ. λάδι + 1 φέτα ψωμί",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Επιλογή εξόδου"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια (σε βαθύ πιάτο) + 3-4 κ.σ. σάλτσα + 60γρ τυρί τριμμένο",
-          "frequency": "Έως 1 φορά/εβδομάδα",
-          "recommended_products": "Ιδανικά μεσημέρι"
-        },
-        {
-          "description": "1 πιάτο μακαρόνια (σε βαθύ πιάτο) + 3-4 κ.σ. κιμά + 30γρ τυρί τριμμένο",
-          "frequency": null,
-          "recommended_products": "Εναλλακτικά"
-        },
-        {
-          "description": "Ομελέτα με 1 αυγό + 100γρ ασπράδι + λαχανικά + σαλάτα + 1 φέτα ψωμί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Ντάκος ή παξιμαδάκια (έως 180 θερμίδες) + 60γρ φέτα light + 1 αυγό + σαλάτα + 1 κ.σ. λάδι",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-
-    "Ελαφριά γεύματα": {
-      "title": "Ελαφριά γεύματα",
-      "options": [
-        {
-          "description": "2 αυγά μάτια + σαλάτα (ιδανικά αγγούρι) + 1 φέτα ψωμί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Ομελέτα: 1 αυγό + 100γρ ασπράδι + πιπεριές + 1 φέτα γαλοπούλα 0%-3% + σαλάτα + 30γρ light τυρί",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 αραβική (180 θερμίδες) + 1 φέτα τυρί + 1 φέτα γαλοπούλα + σαλάτα με λάδι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "Σαλάτα πράσινη + τόνο σε νερό ή κοτόπουλο + 80γρ καλαμπόκι + 1 κ.σ. λάδι",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 κεσεδάκι cottage + 3 κράκερς Παπαδοπούλου ολικής + 10 ντοματίνια",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "½ πιάτο μεσημεριανού (εκτός μακαρόνια και όσπρια)",
-          "frequency": null,
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    },
-
-    "Σνακ": {
-      "title": "Σνακ",
-      "options": [
-        {
-          "description": "1 φρούτο σκέτο (συμπεριλαμβανομένης και της μπανάνας)",
-          "frequency": "Το 1 από τα 2 σνακ να είναι φρούτο",
-          "recommended_products": null
-        },
-        {
-          "description": "1 γιαούρτι + 1 μπάρα έως 160 θερμίδες",
-          "frequency": "Αν δεν έχεις φάει το πρωί",
-          "recommended_products": null
-        },
-        {
-          "description": "1 κλειστή χούφτα ξηρούς καρπούς",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 pudding ΔΕΛΤΑ",
-          "frequency": null,
-          "recommended_products": null
-        },
-        {
-          "description": "1 σοκοφρέτα",
-          "frequency": "Έως 3 φορές/εβδομάδα",
-          "recommended_products": null
-        }
-      ],
-      "comments": null
-    }
-  },
-
-  "fruit_list": [
-    { "name": "Ακτινίδιο", "quantity": "1 μεγάλο" },
-    { "name": "Ανανάς (φρέσκος)", "quantity": "¾ φλιτζανιού" },
-    { "name": "Ανανάς (κονσέρβα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Αχλάδι (φρέσκο)", "quantity": "1 μέτριο" },
-    { "name": "Αχλάδι (κομπόστα)", "quantity": "½ φλιτζάνι" },
-    { "name": "Βατόμουρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Βερίκοκα", "quantity": "4 μέτρια" },
-    { "name": "Βερίκοκα αποξηραμένα", "quantity": "4 τεμάχια" },
-    { "name": "Βερίκοκα κομπόστα άγλυκη", "quantity": "½ φλιτζάνι ή 2 τεμάχια" },
-    { "name": "Γκρέιπφρουτ", "quantity": "½ μεγάλο" },
-    { "name": "Δαμάσκηνα (φρέσκα)", "quantity": "2" },
-    { "name": "Δαμάσκηνα αποξηραμένα", "quantity": "3 μέτρια" },
-    { "name": "Καρπούζι", "quantity": "1 φέτα" },
-    { "name": "Κεράσια", "quantity": "12 μεγάλα" },
-    { "name": "Μάνγκο", "quantity": "½ μικρό" },
-    { "name": "Μανταρίνι", "quantity": "2 μικρά" },
-    { "name": "Μήλο", "quantity": "1 τεμάχιο" },
-    { "name": "Μήλο κομπόστα άγλυκα", "quantity": "½ φλιτζάνι" },
-    { "name": "Μούρα", "quantity": "¾ φλιτζανιού" },
-    { "name": "Μπανάνα", "quantity": "1 μικρή" },
-    { "name": "Νεκταρίνι", "quantity": "1 μικρό" },
-    { "name": "Πεπόνι", "quantity": "1 φλιτζάνι" },
-    { "name": "Πορτοκάλι", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο", "quantity": "1 μικρό" },
-    { "name": "Ροδάκινο κομπόστα", "quantity": "½ φλιτζάνι" },
-    { "name": "Σταφίδες", "quantity": "1 κ.σ." },
-    { "name": "Σταφύλια", "quantity": "17 μικρές ρόγες" },
-    { "name": "Σύκα (φρέσκα)", "quantity": "2" },
-    { "name": "Σύκα αποξηραμένα", "quantity": "2" },
-    { "name": "Φράουλες", "quantity": "1 ¼ φλιτζανιού" },
-    { "name": "Χουρμάδες", "quantity": "3 τεμάχια" }
-  ],
 
   "additional_notes": null
 }
-
 ]

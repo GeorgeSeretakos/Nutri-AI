@@ -1,13 +1,13 @@
 from docx import Document
 from docx.shared import Pt
 from pathlib import Path
-from nutrition_ai.agents.shopping_list_agent import ShoppingList
+from nutrition_ai.agents.shopping_list_agent import ShoppingListAgent
 
 
 class ShoppingListExporter:
 
     @staticmethod
-    def export_to_docx(shopping_list: ShoppingList, output_path: str):
+    def export_to_docx(shopping_list: ShoppingListAgent, output_path: str):
         """
         Export shopping list to a DOCX file with categories and checkboxes.
         """
@@ -44,7 +44,7 @@ from reportlab.lib.units import cm
 class ShoppingListExporterPDF:
 
     @staticmethod
-    def export_to_pdf(shopping_list: ShoppingList, output_path: str):
+    def export_to_pdf(shopping_list: ShoppingListAgent, output_path: str):
         """
         Export shopping list to a clean PDF with categories and checkboxes.
         """

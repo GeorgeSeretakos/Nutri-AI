@@ -18,8 +18,8 @@ class WatsonxClient:
     def __init__(self,
                  model_id: str | str = "meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
                  project_id: str | None = None,
-                 temperature: float = 0.3,
-                 max_new_tokens: int = 4000,
+                 temperature: float = 0.1,
+                 max_new_tokens: int = 5000,
                  decoding_method: str = "greedy",
                  repetition_penalty: float = 1.0
                  ):
