@@ -12,6 +12,7 @@ from nutrition_ai.app.utils.docx_importer import DocxImporter
 from nutrition_ai.models.user_profile import UserProfile
 from nutrition_ai.models.diet_plan import DietPlan
 from nutrition_ai.models.weekly_plan import WeeklyPlan
+from nutrition_ai.models.weekly_update_request import WeeklyUpdateRequest
 
 
 # ==============================================
@@ -106,6 +107,30 @@ def create_shopping_list(plan: WeeklyPlan):
     """
     weekly_json = plan.model_dump_json(ensure_ascii=False)
     return shopping_agent.build_list(weekly_json)
+
+
+
+@app.post("/diet/update-weekly")
+async def update_weekly_plan(request: WeeklyUpdateRequest):
+    """
+    Takes:
+    - weekly_plan (JSON)
+    - diet_plan (JSON)
+    - feedback_text (string)
+
+    Returns:
+    - updated weekly plan (JSON dict)
+    """
+
+    agent = DietAgent()
+
+    updated = agent.update_weekly(
+        weekly_json=json.dumps(request.weekly_plan, ensure_ascii=False),
+        diet_json=json.dumps(request.diet_plan, ensure_ascii=False),
+        feedback_text=request.feedback_text
+    )
+
+    return updated
 
 
 # ==============================================

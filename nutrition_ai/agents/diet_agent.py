@@ -251,3 +251,71 @@ class DietAgent:
             candidate += "}" * (opens - closes)
 
         return candidate
+
+    def update_weekly(self, weekly_json: str, diet_json: str, feedback_text: str) -> dict:
+        """
+        Updates an existing weekly plan using free-text feedback.
+        Uses the diet plan as context so the model knows which meals are allowed.
+        Auto-fix loop for JSON validity.
+        """
+
+        template = self._load_text("edit_weekly.txt")
+        weekly_template = self._load_text("weekly_template.json")
+
+        variables = {
+            "weekly_plan": weekly_json,
+            "diet_plan": diet_json,
+            "feedback_text": feedback_text,
+            "json_template": weekly_template,
+        }
+
+        # 1️⃣ Render initial prompt
+        prompt = self._render_template(template, variables)
+        print("=== WEEKLY PLAN UPDATE PROMPT ===")
+        print(prompt)
+
+        # 2️⃣ First LLM call
+        raw = self.client.generate(prompt)
+        print("=== RAW LLM ===")
+        print(raw)
+
+        clean_json = self._extract_json(raw)
+
+        # 3️⃣ AUTO-FIX LOOP
+        for attempt in range(3):
+            try:
+                parsed = json.loads(clean_json)
+                return parsed  # WeeklyPlan is returned as raw dict; Frontend can load WeeklyPlan(**parsed)
+            except Exception as e:
+                print(f"\n❌ Weekly JSON failed (attempt {attempt + 1}) -> Fixing")
+
+                fix_prompt = f"""
+    Fix the following weekly plan JSON so that it is valid.
+
+    INVALID JSON:
+    {clean_json}
+
+    ERROR:
+    {str(e)}
+
+    STRICT TEMPLATE:
+    {weekly_template}
+
+    RULES:
+    - Only adjust structure (brackets, lists, strings).
+    - Do NOT invent new days.
+    - Do NOT add meals not present in the diet plan.
+    - Keep day names the same (English only).
+    - Return ONLY valid JSON.
+    """
+
+                print("=== FIX PROMPT SENT ===")
+                print(fix_prompt)
+
+                fixed_raw = self.client.generate(fix_prompt)
+                print("=== FIXED RAW ===")
+                print(fixed_raw)
+
+                clean_json = self._extract_json(fixed_raw)
+
+        raise ValueError("❌ LLM could not produce valid weekly plan after 3 attempts.")

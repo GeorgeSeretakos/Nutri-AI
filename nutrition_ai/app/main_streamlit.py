@@ -185,7 +185,7 @@ with col3:
             st.error("Δεν υπάρχει baseline.")
         else:
             weekly = rotation_agent.create_weekly_plan(baseline)
-            st.json(json.loads(weekly.json()))
+            st.json(json.loads(weekly.model_dump_json()))
 
 # -------------------------
 # SHOPPING LIST
@@ -215,3 +215,29 @@ if uploaded:
         save_baseline(plan)
         st.success("Η διατροφή εισήχθη επιτυχώς από Word!")
         st.json(json.loads(plan.model_dump_json()))
+
+
+st.subheader("✏️ Update Weekly Plan")
+
+weekly_feedback = st.text_area(
+    "Τι αλλαγές θέλει ο διατροφολόγος στο εβδομαδιαίο πλάνο;",
+    placeholder="Αλλάξε το κύριο γεύμα της Τρίτης σε Σολομό..."
+)
+
+if st.button("Update Weekly Plan"):
+    if not has_baseline:
+        st.error("Δεν υπάρχει baseline diet για να δημιουργηθεί weekly plan πρώτα.")
+    else:
+        # 1. First generate weekly from baseline
+        weekly = rotation_agent.create_weekly_plan(baseline)
+        weekly_json = weekly.model_dump_json()
+
+        # 2. Update weekly
+        updated_weekly = diet_agent.update_weekly(
+            diet_json=baseline,
+            weekly_json=weekly_json,
+            feedback_text=weekly_feedback
+        )
+
+        st.success("Το εβδομαδιαίο πλάνο ενημερώθηκε!")
+        st.json(updated_weekly)
