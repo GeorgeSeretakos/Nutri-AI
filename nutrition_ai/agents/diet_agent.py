@@ -45,7 +45,7 @@ class DietAgent:
             "latest_measurement": latest_measurement,
             "daily_calories": daily_calories,
             "macro_targets": json.dumps(macro_targets, ensure_ascii=False),
-            # "few_shots": few_shots,
+            "few_shots": few_shots,
             "json_template": json_template,
         }
 
