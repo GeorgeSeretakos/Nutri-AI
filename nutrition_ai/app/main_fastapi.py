@@ -133,6 +133,68 @@ async def update_weekly_plan(request: WeeklyUpdateRequest):
     return updated
 
 
+
+from nutrition_ai.models.chat_schemas  import ChatRequest, ChatResponse
+from nutrition_ai.app.utils.db_helpers import (
+    load_user_profile_from_db,
+    load_user_diet_from_db,
+    load_user_weekly_from_db,
+    save_user_state_to_db
+)
+from nutrition_ai.agents.chat_agent import NutritionChatAgent
+
+app = FastAPI()
+
+
+@app.post("/chat", response_model=ChatResponse)
+def chat_endpoint(body: ChatRequest):
+
+    # 1️⃣ Load user profile
+    profile = load_user_profile_from_db(body.user_id)
+    if not profile:
+        raise HTTPException(404, f"User profile not found: {body.user_id}")
+
+    # 2️⃣ Load diet + weekly (if any)
+    baseline = load_user_diet_from_db(body.user_id)
+    weekly = load_user_weekly_from_db(body.user_id)
+
+    # 3️⃣ Create agent for this user
+    agent = NutritionChatAgent(
+        profile=profile,
+        baseline_diet=baseline,
+        weekly_plan=weekly
+    )
+
+    # 4️⃣ Run chat
+    answer = agent.chat(body.message)
+
+    # 5️⃣ Extract updated state
+    new_state = agent.get_state()
+
+    updated_diet = new_state["baseline_diet"]
+    updated_weekly = new_state["weekly_plan"]
+
+    # 6️⃣ Save to DB
+    save_user_state_to_db(
+        user_id=body.user_id,
+        profile=profile,
+        baseline_diet=(
+            None if updated_diet is None else
+            load_user_diet_from_db(body.user_id)
+        ),
+        weekly_plan=(
+            None if updated_weekly is None else
+            load_user_weekly_from_db(body.user_id)
+        )
+    )
+
+    # 7️⃣ Return final response
+    return ChatResponse(
+        answer=answer,
+        baseline_diet=updated_diet,
+        weekly_plan=updated_weekly,
+    )
+
 # ==============================================
 # 6) Health Check
 # ==============================================
