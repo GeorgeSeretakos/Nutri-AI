@@ -4,28 +4,47 @@
   "height": "",
   "exercise": "",
   "goal": "",
+
   "sections": {
-    "ΠΡΩΙΝΟ": {
-      "title": "ΠΡΩΙΝΟ",
-      "options": [],
-      "comments": ""
+    "ΠΡΩΙΝΟ": [],
+
+    "ΜΕΣΗΜΕΡΙΑΝΟ/ΒΡΑΔΙΝΟ": {
+      "groups": [
+        {
+          "label": "Κύρια γεύματα",
+          "options": [
+            {
+              "option": "",
+              "frequency": null,
+              "comments": null
+            }
+          ]
+        },
+        {
+          "label": "Ελαφριά γεύματα",
+          "options": [
+            {
+              "option": "",
+              "frequency": null,
+              "comments": null
+            }
+          ]
+        },
+        {
+          "label": "Σνακ (2 την ημέρα)",
+          "options": [
+            {
+              "option": "",
+              "frequency": null,
+              "comments": null
+            }
+          ]
+        }
+      ]
     },
-    "Κύρια γεύματα": {
-      "title": "Κύρια γεύματα",
-      "options": [],
-      "comments": ""
-    },
-    "Ελαφριά γεύματα": {
-      "title": "Ελαφριά γεύματα",
-      "options": [],
-      "comments": ""
-    },
-    "Σνακ": {
-      "title": "Σνακ",
-      "options": [],
-      "comments": ""
-    }
+
+    "ΛΙΣΤΑ ΦΡΟΥΤΩΝ ΠΟΥ ΜΠΟΡΕΙΣ ΝΑ ΕΠΙΛΕΞΕΙΣ": []
   },
-  "fruit_list": [],
-  "additional_notes": ""
+
+  "additional_notes": null
 }
